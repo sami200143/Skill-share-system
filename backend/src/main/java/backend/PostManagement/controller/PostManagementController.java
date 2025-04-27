@@ -87,7 +87,7 @@ public class PostManagementController {
         post.setUserID(userID);
         post.setTitle(title);
         post.setDescription(description);
-        post.setCategory(category); // Set category
+        post.setCategory(category); 
         post.setMedia(mediaUrls);
 
         PostManagementModel savedPost = postRepository.save(post);
