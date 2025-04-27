@@ -1,0 +1,107 @@
+.continer {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.continSection {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.from_continer {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+}
+
+.Auth_heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.Auth_formGroup {
+  margin-bottom: 20px;
+}
+
+.Auth_label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.Auth_input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.Auth_button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.Auth_button:hover {
+  background-color: #0056b3;
+}
+
+.newpart_set {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.newpart_set_icon {
+  font-size: 24px;
+  color: #007bff;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.newpart_set_icon:hover {
+  color: #0056b3;
+}
+
+.media-preview-item {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.media-preview {
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+.remove-media-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(255, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

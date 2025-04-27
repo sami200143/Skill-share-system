@@ -1,0 +1,165 @@
+.continer {
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+.continSection {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.searchinput {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.Auth_input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.Auth_input:focus {
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.add_new_btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #2563eb;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.add_new_btn:hover {
+  transform: scale(1.1);
+}
+
+.add_new_btn_icon {
+  color: white;
+  font-size: 24px;
+}
+
+.post_card_continer {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.post_card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post_card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.user_details_card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.name_section_post_achi {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.name_section_post_owner_name {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 1.1rem;
+}
+
+.date_card_dte {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.action_btn_icon_post {
+  display: flex;
+  gap: 1rem;
+}
+
+.action_btn_icon {
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.action_btn_icon:first-child {
+  color: #2563eb;
+}
+
+.action_btn_icon:last-child {
+  color: #dc2626;
+}
+
+.dis_con {
+  margin-top: 1rem;
+}
+
+.topic_cont {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.dis_con_pera {
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.achievement_image {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.not_found_box {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+}
+
+.not_found_msg {
+  color: #6b7280;
+  margin: 1rem 0;
+}
+
+.not_found_btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.not_found_btn:hover {
+  background: #1d4ed8;
+}

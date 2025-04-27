@@ -1,0 +1,157 @@
+@import '../../styles/theme.css';
+
+/* Layout container */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  color: #333;
+}
+
+/* Modern gradient background with vibrant colors suitable for art platform */
+.gradient-background {
+  min-height: 100vh;
+  background: linear-gradient(45deg, #FF9A8B 0%, #FF6A88 25%, #FF99AC 50%, #6A7FDB 75%, #65B2FF 100%);
+  background-size: 300% 300%;
+  animation: gradient-shift 20s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glass effect classes */
+.glass-effect {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+.glass-panel {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+.glass-element {
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 100%);
+  z-index: 1;
+}
+
+/* Main content container */
+.content-container {
+  position: relative;
+  z-index: 10;
+  padding: 2.5rem;
+  max-width: 1200px;
+  width: 90%;
+  margin: 2rem auto;
+  min-height: calc(100vh - 100px);
+}
+
+/* Animated background elements */
+.animated-bg-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.animated-element {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  z-index: 0;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.5s ease;
+}
+
+.animation-active .animated-element {
+  animation: float 20s infinite ease-in-out;
+  opacity: 0.25;
+  transform: scale(1);
+}
+
+/* Shape variations for modern UI */
+.shape-circle {
+  border-radius: 50%;
+}
+
+.shape-rounded-square {
+  border-radius: 20%;
+}
+
+.shape-blob {
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+}
+
+.shape-wave {
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+}
+
+/* Animation for floating elements */
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translateY(-30px) rotate(5deg) scale(1.05);
+  }
+  50% {
+    transform: translateY(15px) rotate(-5deg) scale(0.95);
+  }
+  75% {
+    transform: translateY(-20px) rotate(3deg) scale(1.02);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+/* Element variations with glass-like colors */
+.element-1 { background: linear-gradient(135deg, rgba(255, 154, 139, 0.2) 0%, rgba(255, 183, 139, 0.1) 100%); }
+.element-2 { background: linear-gradient(135deg, rgba(255, 106, 136, 0.2) 0%, rgba(255, 153, 172, 0.1) 100%); }
+.element-3 { background: linear-gradient(135deg, rgba(106, 127, 219, 0.2) 0%, rgba(101, 178, 255, 0.1) 100%); }
+.element-4 { background: linear-gradient(135deg, rgba(152, 115, 255, 0.2) 0%, rgba(172, 115, 255, 0.1) 100%); }
+.element-5 { background: linear-gradient(135deg, rgba(69, 204, 184, 0.2) 0%, rgba(69, 174, 204, 0.1) 100%); }
+.element-6 { background: linear-gradient(135deg, rgba(255, 154, 139, 0.15) 0%, rgba(255, 183, 139, 0.05) 100%); }
+.element-7 { background: linear-gradient(135deg, rgba(255, 106, 136, 0.15) 0%, rgba(255, 153, 172, 0.05) 100%); }
+.element-8 { background: linear-gradient(135deg, rgba(106, 127, 219, 0.15) 0%, rgba(101, 178, 255, 0.05) 100%); }
+.element-9 { background: linear-gradient(135deg, rgba(152, 115, 255, 0.15) 0%, rgba(172, 115, 255, 0.05) 100%); }
+.element-10 { background: linear-gradient(135deg, rgba(69, 204, 184, 0.15) 0%, rgba(69, 174, 204, 0.05) 100%); }
+.element-11 { background: linear-gradient(135deg, rgba(255, 221, 148, 0.15) 0%, rgba(255, 183, 139, 0.05) 100%); }
+.element-12 { background: linear-gradient(135deg, rgba(130, 204, 221, 0.15) 0%, rgba(130, 170, 255, 0.05) 100%); }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content-container {
+    padding: 1.5rem;
+    margin: 1rem auto;
+    width: 95%;
+  }
+}
