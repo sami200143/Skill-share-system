@@ -73,7 +73,6 @@ function AddNewPost() {
     const updatedMedia = [...media];
     const updatedPreviews = [...mediaPreviews];
     
-    // Revoke the object URL to prevent memory leaks
     URL.revokeObjectURL(mediaPreviews[index].url);
     
     updatedMedia.splice(index, 1);
