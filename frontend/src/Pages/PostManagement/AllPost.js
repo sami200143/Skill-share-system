@@ -871,7 +871,7 @@ function AllPost() {
                                     e.target.style.transform = 'scale(1)';
                                   }}
                                 />
-                                <TbPencilCancel className='coment_btn'
+                                <TbPencilCancel className='coment_btn'//comment button under the perticular post 
                                   onClick={() => setEditingComment({})}
                                   style={{
                                     color: '#FF6F61',
