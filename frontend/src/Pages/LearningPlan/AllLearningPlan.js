@@ -8,7 +8,7 @@ import { HiCalendarDateRange } from "react-icons/hi2";
 import Modal from 'react-modal';
 import Layout from '../../Components/Layout/Layout';
 
-Modal.setAppElement('#root'); // Set the app element for accessibility
+Modal.setAppElement('#root');
 
 function AllLearningPlan() {
   const [posts, setPosts] = useState([]);
