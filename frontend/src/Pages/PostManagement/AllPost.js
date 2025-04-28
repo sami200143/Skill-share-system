@@ -261,7 +261,7 @@ function AllPost() {
       console.error('Error deleting comment:', error);
     }
   };
-
+//
   const handleSaveComment = async (postId, commentId, content) => {
     try {
       const userID = localStorage.getItem('userID');
@@ -284,6 +284,7 @@ function AllPost() {
         )
       );
 
+
       setFilteredPosts((prevFilteredPosts) =>
         prevFilteredPosts.map((post) =>
           post.id === postId
@@ -297,7 +298,7 @@ function AllPost() {
         )
       );
 
-      setEditingComment({}); // Clear editing state
+      setEditingComment({}); // Clear editing state in saving comment
     } catch (error) {
       console.error('Error saving comment:', error);
     }
