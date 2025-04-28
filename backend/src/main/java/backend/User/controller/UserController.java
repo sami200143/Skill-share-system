@@ -55,7 +55,7 @@ public class UserController {
 
     private static final String PROFILE_UPLOAD_DIR = "uploads/profile"; // Relative path
 
-    //Insert
+    //Insert - 
     @PostMapping("/user")
     public ResponseEntity<?> newUserModel(@RequestBody UserModel newUserModel) {
         if (newUserModel.getEmail() == null || newUserModel.getFullname() == null || 
