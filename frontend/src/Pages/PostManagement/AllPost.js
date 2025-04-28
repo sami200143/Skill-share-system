@@ -75,7 +75,7 @@ function AllPost() {
     fetchPosts();
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { //user effects 
     const fetchFollowedUsers = async () => {
       const userID = localStorage.getItem('userID');
       if (userID) {
