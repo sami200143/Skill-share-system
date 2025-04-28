@@ -36,7 +36,7 @@ public class OAuthController {
             user = new UserModel();
             user.setEmail(email);
             user.setFullname(name);
-            user.setGoogleProfileImage(googleProfileImage); // Save Google profile image
+            user.setGoogleProfileImage(googleProfileImage); // - Save Google profile image
             userRepository.save(user);
         } else {
             user = userRepository.findByEmail(email).orElseThrow(() -> 
