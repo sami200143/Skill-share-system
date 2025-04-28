@@ -17,6 +17,7 @@ function AddAchievements() {
   const [imagePreview, setImagePreview] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
 
+
   useEffect(() => {
     const userId = localStorage.getItem('userID');
     if (userId) {
@@ -37,6 +38,7 @@ function AddAchievements() {
     processImageFile(file);
   };
 
+  //process and validate the selected image
   const processImageFile = (file) => {
     const maxFileSize = 50 * 1024 * 1024; //size 50MB
 
