@@ -277,7 +277,8 @@ function UpdateLearningPost() {
     }
     return null;
   };
-
+  
+  //wrapper the content
   return (
     <Layout>
       <div className="post-content-wrapper" style={{
