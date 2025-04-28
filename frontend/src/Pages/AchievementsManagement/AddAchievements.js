@@ -86,6 +86,7 @@ function AddAchievements() {
     setFormData({ ...formData, [name]: value });
   };
 
+  //submit the form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
