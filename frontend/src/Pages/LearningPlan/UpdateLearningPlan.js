@@ -94,7 +94,6 @@ function UpdateLearningPost() {
 
     setImage(file);
     setImagePreview(URL.createObjectURL(file));
-    // When new image is selected, clear existing image reference
     setExistingImage('');
   };
 
