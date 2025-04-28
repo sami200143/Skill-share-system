@@ -23,6 +23,7 @@ function UpdateAchievements() {
   useEffect(() => {
     const fetchAchievement = async () => {
       try {
+        //load achievement
         const response = await fetch(`http://localhost:8080/achievements/${id}`);
         if (!response.ok) {
           throw new Error('Failed to fetch achievement');
