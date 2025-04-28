@@ -133,6 +133,7 @@ function AddLearningPlan() {
       return ''; // Return an empty string for invalid URLs
     }
   };
+  // Create templete
 
   return (
     <Layout>
@@ -223,7 +224,7 @@ function AddLearningPlan() {
               ))}
             </div>
           </div>
-        </div>
+        </div> 
 
         <div className="post-form-container" style={{
           backgroundColor: 'rgba(255, 255, 255, 0.9)',
