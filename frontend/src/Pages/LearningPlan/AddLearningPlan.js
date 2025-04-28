@@ -9,6 +9,7 @@ import { FaImage } from "react-icons/fa";
 import { HiCalendarDateRange } from "react-icons/hi2";
 import Layout from '../../Components/Layout/Layout'; 
 
+//Adding the learning plan
 function AddLearningPlan() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
