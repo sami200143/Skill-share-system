@@ -100,7 +100,9 @@ function AllAchievements() {
           />
         </div>
         
+        
         <div className='add_new_btn' 
+        //Create new achievment button
           onClick={() => (window.location.href = '/addAchievements')}
           style={{
             backgroundColor: '#FF6F61',
