@@ -12,6 +12,7 @@ function AddAchievements() {
     category: '',
     postOwnerName: '',
   });
+  //states for image handling
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
