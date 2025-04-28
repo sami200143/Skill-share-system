@@ -900,7 +900,7 @@ function AllPost() {
                               </>
                             ) : (
                               <>
-                                <GrUpdate className='coment_btn' 
+                                <GrUpdate className='coment_btn' //comment button styling
                                   onClick={() =>
                                     setEditingComment({ id: comment.id, content: comment.content })
                                   }
