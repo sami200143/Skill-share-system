@@ -228,7 +228,7 @@ function AllPost() {
         )
       );
 
-      setNewComment({ ...newComment, [postId]: '' });
+      setNewComment({ ...newComment, [postId]: '' });//set a new comment to the relevent post
     } catch (error) {
       console.error('Error adding comment:', error);
     }
