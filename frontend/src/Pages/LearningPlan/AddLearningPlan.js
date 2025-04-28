@@ -9,7 +9,6 @@ import { FaImage } from "react-icons/fa";
 import { HiCalendarDateRange } from "react-icons/hi2";
 import Layout from '../../Components/Layout/Layout'; 
 
-//Adding the learning plan
 function AddLearningPlan() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -241,6 +240,10 @@ function AddLearningPlan() {
             marginBottom: '20px',
             textAlign: 'center'
           }}>Add Learning Plan</h1>
+          
+
+
+          
 
           <form onSubmit={handleSubmit} className="post-form">
             <div className="form-group">
@@ -430,6 +433,7 @@ function AddLearningPlan() {
                   backgroundColor: '#fff'
                 }}
               >
+                
                 <option value="">Select Category</option>
                 <option value="Painting">Painting</option>
                 <option value="Drawing">Drawing</option>

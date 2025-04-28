@@ -7,6 +7,7 @@ import { IoIosCreate } from "react-icons/io";
 import { HiCalendarDateRange } from "react-icons/hi2";
 import Layout from '../../Components/Layout/Layout';
 
+//create my learning plan
 function MyLearningPlan() {
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
@@ -564,6 +565,8 @@ function MyLearningPlan() {
             }}
           />
         </div>
+      
+        
 
         <div className='add_new_btn' 
           onClick={() => (window.location.href = '/addLearningPlan')}
