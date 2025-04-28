@@ -17,6 +17,7 @@ function MyAchievements() {
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
+    //filter user achievements
     fetch('http://localhost:8080/achievements')
       .then((response) => response.json())
       .then((data) => {
