@@ -36,7 +36,7 @@ function AddAchievements() {
   };
 
   const processImageFile = (file) => {
-    const maxFileSize = 50 * 1024 * 1024; // 50MB
+    const maxFileSize = 50 * 1024 * 1024; //size 50MB
 
     if (file.size > maxFileSize) {
       alert('File exceeds the maximum size of 50MB.');
