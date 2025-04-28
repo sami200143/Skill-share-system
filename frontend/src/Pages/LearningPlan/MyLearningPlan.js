@@ -17,6 +17,7 @@ function MyLearningPlan() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        //filter the plans
         const response = await axios.get('http://localhost:8080/learningPlan');
         const userPosts = response.data.filter(post => post.postOwnerID === userId);
         setPosts(userPosts);
