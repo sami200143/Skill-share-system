@@ -103,7 +103,7 @@ function AddAchievements() {
         body: imageFormData,
       });
       const imageUrl = await uploadResponse.text();
-
+      //load achievements
       const response = await fetch('http://localhost:8080/achievements', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
