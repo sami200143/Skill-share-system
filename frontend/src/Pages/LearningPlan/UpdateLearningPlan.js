@@ -49,7 +49,6 @@ function UpdateLearningPost() {
 
     fetchPost();
     
-    // Cleanup function to revoke object URLs when component unmounts
     return () => {
       if (imagePreview) {
         URL.revokeObjectURL(imagePreview);
