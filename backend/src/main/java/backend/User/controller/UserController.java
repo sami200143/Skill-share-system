@@ -109,7 +109,7 @@ public class UserController {
                 .orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
-    //update
+    //update -
     @PutMapping("/user/{id}")
     UserModel updateProfile(@RequestBody UserModel newUserModel, @PathVariable String id) {
         return userRepository.findById(id)
