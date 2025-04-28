@@ -184,7 +184,7 @@ public class UserController {
         }
     }
 
-    //delete
+    //delete -
     @DeleteMapping("/user/{id}")
     public ResponseEntity<?> deleteProfile(@PathVariable String id) {
         if (!userRepository.existsById(id)) {
