@@ -27,7 +27,7 @@ public class OAuthController {
         String name = (String) attributes.get("name");
         String googleProfileImage = (String) attributes.get("picture"); // Retrieve Google profile image URL
 
-        // Encode the Google profile image URL
+        // - Encode the Google profile image URL
         String encodedGoogleProfileImage = URLEncoder.encode(googleProfileImage, StandardCharsets.UTF_8);
 
         UserModel user;
