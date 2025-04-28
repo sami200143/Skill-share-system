@@ -133,7 +133,7 @@ function AllPost() {
     setShowFollowingPosts(false);
     
     if (showMyPosts) {
-      // Show all posts
+      // Show all posts -
       setFilteredPosts(posts);
     } else {
       // Filter posts by logged-in user ID
