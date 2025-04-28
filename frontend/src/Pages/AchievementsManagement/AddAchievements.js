@@ -3,6 +3,7 @@ import Layout from '../../Components/Layout/Layout';
 import './AddAchievements.css';
 
 function AddAchievements() {
+  //Form Data state
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -97,7 +98,7 @@ function AddAchievements() {
     try {
       const imageFormData = new FormData();
       imageFormData.append('file', image);
-      //upload files
+      //upload files ed
       const uploadResponse = await fetch('http://localhost:8080/achievements/upload', {
         method: 'POST',
         body: imageFormData,
