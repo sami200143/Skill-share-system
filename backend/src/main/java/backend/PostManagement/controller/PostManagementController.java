@@ -259,7 +259,7 @@ public class PostManagementController {
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    @PutMapping("/{postId}/comment/{commentId}")
+    @PutMapping("/{postId}/comment/{commentId}")//updating initial comment under a post
     public ResponseEntity<PostManagementModel> updateComment(
             @PathVariable String postId,
             @PathVariable String commentId,
