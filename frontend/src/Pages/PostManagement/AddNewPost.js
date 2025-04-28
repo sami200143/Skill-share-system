@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import NavBar from '../../Components/NavBar/NavBar';
-import './AddNewPost.css'; // Make sure to include the CSS file
+import './AddNewPost.css'; // Make sure to include the CSS filee
 
 function AddNewPost() {
   const [title, setTitle] = useState('');
