@@ -241,7 +241,7 @@ function AllPost() {
         params: { userID },
       });
 
-      // Update state to remove the deleted comment
+      // Update state to remove the deleted comments
       setPosts((prevPosts) =>
         prevPosts.map((post) =>
           post.id === postId
