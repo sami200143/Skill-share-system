@@ -100,6 +100,7 @@ function UpdateAchievements() {
     setShowConfirmDialog(true);
   };
 
+  //confirm and update process
   const confirmUpdate = async () => {
     setIsLoading(true);
     setShowConfirmDialog(false);
