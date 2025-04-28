@@ -88,7 +88,6 @@ function UpdateLearningPost() {
       return;
     }
 
-    // Clean up previous preview URL if exists
     if (imagePreview) {
       URL.revokeObjectURL(imagePreview);
     }
