@@ -3,11 +3,11 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { IoMdAdd } from "react-icons/io";
 import './post.css';
-import './Templates.css'; // Import the updated CSS file
+import './Templates.css';
 import { FaVideo } from "react-icons/fa";
 import { FaImage } from "react-icons/fa";
 import { HiCalendarDateRange } from "react-icons/hi2";
-import Layout from '../../Components/Layout/Layout'; // Import Layout component
+import Layout from '../../Components/Layout/Layout'; 
 
 function AddLearningPlan() {
   const [title, setTitle] = useState('');
