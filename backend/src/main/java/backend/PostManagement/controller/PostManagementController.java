@@ -225,7 +225,7 @@ public class PostManagementController {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    @PostMapping("/{postId}/comment")
+    @PostMapping("/{postId}/comment")//posting comments on the post
     public ResponseEntity<PostManagementModel> addComment(@PathVariable String postId, @RequestBody Map<String, String> request) {
         String userID = request.get("userID");
         String content = request.get("content");
