@@ -636,6 +636,7 @@ function MyLearningPlan() {
               >Create New Learning Plan</button>
             </div>
           ) : (
+            //display the learning plans
             filteredPosts.map((post) => (
               <div key={post.id} className='post_card_new' style={{
                 backgroundColor: 'rgba(255, 255, 255, 0.9)',
