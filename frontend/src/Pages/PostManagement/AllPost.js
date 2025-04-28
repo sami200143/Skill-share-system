@@ -270,7 +270,7 @@ function AllPost() {
         content,
       });
 
-      // Update the comment in state
+      // Update  the comment in state
       setPosts((prevPosts) =>
         prevPosts.map((post) =>
           post.id === postId
