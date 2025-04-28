@@ -21,7 +21,7 @@ function AllAchievements() {
       .then((response) => response.json())
       .then((data) => {
         setProgressData(data);
-        setFilteredData(data); // Initially show all data
+        setFilteredData(data);
       })
       .catch((error) => console.error('Error fetching Achievements data:', error));
   }, []);
