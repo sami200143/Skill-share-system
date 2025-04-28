@@ -76,7 +76,7 @@ public class UserController {
         }
     }
 
-    //User Login
+    //User Login - 
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody UserModel loginDetails) {
         System.out.println("Login attempt for email: " + loginDetails.getEmail()); // Log email for debugging
