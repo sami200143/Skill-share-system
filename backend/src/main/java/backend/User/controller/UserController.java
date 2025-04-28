@@ -97,7 +97,7 @@ public class UserController {
         }
     }
 
-    //Display
+    //Display - 
     @GetMapping("/user")
     List<UserModel> getAllUsers() {
         return userRepository.findAll();
