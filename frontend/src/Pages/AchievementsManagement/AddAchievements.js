@@ -97,7 +97,7 @@ function AddAchievements() {
     try {
       const imageFormData = new FormData();
       imageFormData.append('file', image);
-      
+      //upload files
       const uploadResponse = await fetch('http://localhost:8080/achievements/upload', {
         method: 'POST',
         body: imageFormData,
