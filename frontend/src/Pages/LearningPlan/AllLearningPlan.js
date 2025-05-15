@@ -54,3 +54,53 @@ function AllLearningPlan() {
       return ''; // Return an empty string for invalid URLs
     }
   };
+  //create handling delete
+
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this post?');
+    if (confirmDelete) {
+      try {
+        await axios.delete(`http://localhost:8080/learningPlan/${id}`);
+        alert('Post deleted successfully!');
+        setPosts(posts.filter((post) => post.id !== id));
+        setFilteredPosts(filteredPosts.filter((post) => post.id !== id));
+      } catch (error) {
+        console.error('Error deleting post:', error);
+        alert('Failed to delete post.');
+      }
+    }
+  };
+
+  const handleUpdate = (id) => {
+    window.location.href = `/updateLearningPlan/${id}`;
+  };
+
+  const handleMyPostsToggle = () => {
+    if (showMyPosts) {
+      // Show all posts
+      applyFilters(searchQuery, selectedCategory, false);
+    } else {
+      // Filter posts by logged-in user ID
+      applyFilters(searchQuery, selectedCategory, true);
+    }
+    setShowMyPosts(!showMyPosts);
+  };
+
+  const handleCategoryChange = (category) => {
+    if (selectedCategory === category) {
+      setSelectedCategory('');
+      applyFilters(searchQuery, '', showMyPosts);
+    } else {
+      setSelectedCategory(category);
+      applyFilters(searchQuery, category, showMyPosts);
+    }
+  };
+
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    applyFilters(query, selectedCategory, showMyPosts);
+  };
+
+  const applyFilters = (query, category, onlyMyPosts) => {
+    let filtered = [...posts];
