@@ -73,5 +73,33 @@ function AddNewPost() {
     const updatedMedia = [...media];
     const updatedPreviews = [...mediaPreviews];
 
+    // Revoke the object URL to prevent memory leaks
+    URL.revokeObjectURL(mediaPreviews[index].url);
+    
+    updatedMedia.splice(index, 1);
+    updatedPreviews.splice(index, 1);
+    
+    setMedia(updatedMedia);
+    setMediaPreviews(updatedPreviews);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    
+    const files = Array.from(e.dataTransfer.files);
+    processMediaFiles(files);
+  };
+
 
 }
