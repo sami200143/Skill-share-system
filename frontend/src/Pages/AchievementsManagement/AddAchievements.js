@@ -74,3 +74,49 @@ function AddAchievements() {
     setImage(null);
     setImagePreview(null);
   };
+
+   const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!image) {
+      alert('Please upload an image');
+      return;
+    }
+
+    const submitButton = document.getElementById('submit-button');
+    submitButton.disabled = true;
+    submitButton.innerText = 'Adding Achievement...';
+
+    try {
+      const imageFormData = new FormData();
+      imageFormData.append('file', image);
+      
+      const uploadResponse = await fetch('http://localhost:8080/achievements/upload', {
+        method: 'POST',
+        body: imageFormData,
+      });
+      const imageUrl = await uploadResponse.text();
+
+      const response = await fetch('http://localhost:8080/achievements', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, imageUrl }),
+      });
+
+      if (response.ok) {
+        alert('Achievement added successfully!');
+        window.location.href = '/myAchievements';
+      } else {
+        throw new Error('Failed to add Achievement');
+      }
+    } catch (error) {
+      alert('Failed to add Achievement. Please try again.');
+      submitButton.disabled = false;
+      submitButton.innerText = 'Add Achievement';
+    }
+  };
