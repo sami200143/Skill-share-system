@@ -104,3 +104,123 @@ function AddLearningPlan() {
         endDate,   // New field
         category   // New field
       };
+      // Submit the post data
+      await axios.post('http://localhost:8080/learningPlan', newPost);
+      alert('Post added successfully!');
+      navigate('/allLearningPlan');
+    } catch (error) {
+      console.error('Error adding post:', error);
+      alert('Failed to add post.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const getEmbedURL = (url) => {
+    try {
+      if (url.includes('youtube.com/watch')) {
+        const videoId = new URL(url).searchParams.get('v');
+        return `https://www.youtube.com/embed/${videoId}`;
+      }
+      if (url.includes('youtu.be/')) {
+        const videoId = url.split('youtu.be/')[1];
+        return `https://www.youtube.com/embed/${videoId}`;
+      }
+      return url; // Return the original URL if it's not a YouTube link
+    } catch (error) {
+      console.error('Invalid URL:', url);
+      return ''; // Return an empty string for invalid URLs
+    }
+  };
+
+  return (
+    <Layout>
+      <div className="post-content-wrapper" style={{
+        maxWidth: '800px',
+        margin: '20px auto',
+        padding: '0 15px'
+      }}>
+        {/* Keep template preview container as is */}
+        <div className="template-preview-container">
+          {/* Template 1 */}
+          <div className="template template-1">
+            <p className='template_id_one'>template 1</p>
+            <p className='template_title'>{title || "Title Preview"}</p>
+            <p className='template_dates'><HiCalendarDateRange /> {startDate} to {endDate} </p>
+            <p className='template_description'>{category}</p>
+            <hr></hr>
+            <p className='template_description'>{description || "Description Preview"}</p>
+            <div className="tags_preview">
+              {tags.map((tag, index) => (
+                <span key={index} className="tagname">#{tag}</span>
+              ))}
+            </div>
+            {imagePreview && <img src={imagePreview} alt="Preview" className="iframe_preview" />}
+            {contentURL && (
+              <iframe
+                src={getEmbedURL(contentURL)}
+                title="Content Preview"
+                className="iframe_preview"
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+            )}
+          </div>
+
+          {/* Template 2 */}
+          <div className="template template-2">
+            <p className='template_id_one'>template 2</p>
+            <p className='template_title'>{title || "Title Preview"}</p>
+            <p className='template_dates'><HiCalendarDateRange /> {startDate} to {endDate} </p>
+            <p className='template_description'>{category}</p>
+            <hr></hr>
+            <p className='template_description'>{description || "Description Preview"}</p>
+            <div className="tags_preview">
+              {tags.map((tag, index) => (
+                <span key={index} className="tagname">#{tag}</span>
+              ))}
+            </div>
+            <div className='preview_part'>
+              <div className='preview_part_sub'>
+                {imagePreview && <img src={imagePreview} alt="Preview" className="iframe_preview_new" />}
+              </div>
+              <div className='preview_part_sub'>
+                {contentURL && (
+                  <iframe
+                    src={getEmbedURL(contentURL)}
+                    title="Content Preview"
+                    className="iframe_preview_new"
+                    frameBorder="0"
+                    allowFullScreen
+                  ></iframe>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Template 3 */}
+          <div className="template template-3">
+            <p className='template_id_one'>template 3</p>
+            {imagePreview && <img src={imagePreview} alt="Preview" className="iframe_preview" />}
+            {contentURL && (
+              <iframe
+                src={getEmbedURL(contentURL)}
+                title="Content Preview"
+                className="iframe_preview"
+                frameBorder="0"
+                allowFullScreen
+              ></iframe>
+            )}
+            <p className='template_title'>{title || "Title Preview"}</p>
+            <p className='template_dates'><HiCalendarDateRange /> {startDate} to {endDate} </p>
+            <p className='template_description'>{category}</p>
+            <hr></hr>
+            <p className='template_description'>{description || "Description Preview"}</p>
+            <div className="tags_preview">
+              {tags.map((tag, index) => (
+                <span key={index} className="tagname">#{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
