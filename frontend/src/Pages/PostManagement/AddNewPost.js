@@ -158,6 +158,103 @@ function AddNewPost() {
       paddingBottom: '50px',
       paddingTop: '20px'
     }}></div>
+    <NavBar />
+      
+      <div className="post-content-wrapper" style={{ 
+        position: 'relative', 
+        zIndex: 2,
+        maxWidth: '800px',
+        margin: '20px auto',
+        padding: '0 15px'
+      }}>
+        <div className="post-form-container" style={{
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          borderRadius: '15px',
+          padding: '30px',
+          boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)'
+        }}>
+          <h1 className="post-form-title" style={{ 
+            color: '#333', 
+            borderBottom: '2px solid #FF6F61', 
+            paddingBottom: '10px',
+            fontSize: '32px',
+            fontWeight: 'bold',
+            marginBottom: '20px',
+            textAlign: 'center'
+          }}>Create New Post</h1>
+          
+          <form onSubmit={handleSubmit} className="post-form">
+            <div className="form-group">
+              <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Title</label>
+              <input
+                className="form-input"
+                type="text"
+                placeholder="Enter an engaging title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+                style={{ 
+                  width: '100%', 
+                  padding: '12px', 
+                  borderRadius: '8px', 
+                  border: '1px solid #ccc', 
+                  fontSize: '16px', 
+                  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)' 
+                }}
+              />
+            </div>
+            
+            <div className="form-group">
+              <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Description</label>
+              <textarea
+                className="form-textarea"
+                placeholder="Share your thoughts..."
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+                rows={4}
+                style={{ 
+                  width: '100%', 
+                  padding: '12px', 
+                  borderRadius: '8px', 
+                  border: '1px solid #ccc', 
+                  fontSize: '16px', 
+                  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
+                  resize: 'vertical'
+                }}
+              />
+            </div>
+            
+            <div className="form-group">
+              <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Category</label>
+              <select
+                className="form-select"
+                value={categories}
+                onChange={(e) => setCategories(e.target.value)}
+                required
+                style={{ 
+                  width: '100%', 
+                  padding: '12px', 
+                  borderRadius: '8px', 
+                  border: '1px solid #ccc', 
+                  fontSize: '16px', 
+                  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
+                  backgroundColor: '#fff'
+                }}
+              >
+                <option value="" disabled>Select a category</option>
+                <option value="Painting">Painting</option>
+                <option value="Drawing">Drawing</option>
+                <option value="Sculpture">Sculpture</option>
+                <option value="Photography">Photography</option>
+                <option value="Digital Art">Digital Art</option>
+                <option value="Illustration">Illustration</option>
+                <option value="Calligraphy">Calligraphy</option>
+                <option value="Graffiti / Street Art">Graffiti / Street Art</option>
+                <option value="Mixed Media">Mixed Media</option>
+                <option value="Printmaking">Printmaking</option>
+              </select>
+            </div>
   };
 
     
