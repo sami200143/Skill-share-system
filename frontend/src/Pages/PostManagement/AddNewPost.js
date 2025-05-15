@@ -146,6 +146,12 @@ function AddNewPost() {
       console.error(error);
       alert('Failed to create post. Please try again.');
 
+      // Reset button state
+      document.getElementById('submit-button').disabled = false;
+      document.getElementById('submit-button').innerText = 'Create Post';
+    }
+  };
+
     
 
 
