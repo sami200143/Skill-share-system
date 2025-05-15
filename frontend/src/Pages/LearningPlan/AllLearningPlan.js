@@ -662,3 +662,269 @@ function AllLearningPlan() {
         );
     }
   };
+
+   return (
+    <Layout>
+      <div className='continSection' style={{ 
+        position: 'relative',
+        zIndex: 2,
+        maxWidth: '1200px',
+        margin: '20px auto',
+        padding: '0 15px',
+        marginTop: '80px',
+      }}>
+        <div className='searchinput' style={{ 
+          marginBottom: '20px',
+          display: 'flex',
+          justifyContent: 'center',
+          width: '100%'
+        }}>
+          <input
+            type="text"
+            className="Auth_input"
+            placeholder="Search learning plans by title, description, or category"
+            value={searchQuery}
+            onChange={handleSearch}
+            style={{ 
+              width: '70%', 
+              padding: '12px', 
+              borderRadius: '30px', 
+              border: '1px solid #ccc', 
+              fontSize: '16px', 
+              boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
+              textAlign: 'center'
+            }}
+          />
+        </div>
+        
+        {/* Filter Buttons */}
+        <div className='filter-buttons' style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '15px',
+          marginBottom: '25px',
+          flexWrap: 'wrap'
+        }}>
+          {userId && (
+            <button 
+              onClick={handleMyPostsToggle}
+              className={`filter-btn ${showMyPosts ? 'active' : ''}`}
+              style={{
+                padding: '10px 20px',
+                borderRadius: '20px',
+                border: 'none',
+                background: showMyPosts ? '#4285F4' : 'rgba(66, 133, 244, 0.1)',
+                color: showMyPosts ? '#fff' : '#4285F4',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: showMyPosts ? '0 4px 8px rgba(66, 133, 244, 0.3)' : 'none'
+              }}
+            >
+              My Learning Plans
+            </button>
+          )}
+          
+          {categories.map(category => (
+            <button
+              key={category}
+              onClick={() => handleCategoryChange(category)}
+              className={`filter-btn ${selectedCategory === category ? 'active' : ''}`}
+              style={{
+                padding: '10px 20px',
+                borderRadius: '20px',
+                border: 'none',
+                background: selectedCategory === category ? '#4285F4' : 'rgba(66, 133, 244, 0.1)',
+                color: selectedCategory === category ? '#fff' : '#4285F4',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: selectedCategory === category ? '0 4px 8px rgba(66, 133, 244, 0.3)' : 'none'
+              }}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+        
+        <div className='add_new_btn' 
+          onClick={() => (window.location.href = '/addLearningPlan')}
+          style={{
+            backgroundColor: '#FF6F61',
+            color: '#fff',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 0 20px auto',
+            boxShadow: '0 4px 12px rgba(255, 111, 97, 0.3)',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.backgroundColor = '#E64A45';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 6px 14px rgba(255, 111, 97, 0.4)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.backgroundColor = '#FF6F61';
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 111, 97, 0.3)';
+          }}
+        >
+          <IoIosCreate className='add_new_btn_icon' style={{ fontSize: '24px' }}/>
+        </div>
+        
+        <div className='post_card_continer'>
+          {filteredPosts.length === 0 ? (
+            <div className='not_found_box' style={{
+              backgroundColor: 'rgba(255, 255, 255, 0.9)',
+              borderRadius: '15px',
+              padding: '30px',
+              boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
+              textAlign: 'center',
+              margin: '40px auto',
+              maxWidth: '500px'
+            }}>
+              <div className='not_found_img'></div>
+              <p className='not_found_msg' style={{ color: '#555', fontSize: '18px', margin: '20px 0' }}>
+                {showMyPosts 
+                  ? "You haven't created any learning plans yet." 
+                  : selectedCategory 
+                    ? `No learning plans found in the "${selectedCategory}" category.` 
+                    : "No learning plans found. Please create a new learning plan."
+                }
+              </p>
+              <button 
+                className='not_found_btn' 
+                onClick={() => (window.location.href = '/addLearningPlan')}
+                style={{
+                  backgroundColor: '#4285F4',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '8px',
+                  padding: '12px 25px',
+                  fontSize: '16px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 4px 8px rgba(66, 133, 244, 0.3)'
+                }}
+                onMouseOver={(e) => {
+                  e.target.style.backgroundColor = '#3367D6';
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = '0 6px 14px rgba(66, 133, 244, 0.4)';
+                }}
+                onMouseOut={(e) => {
+                  e.target.style.backgroundColor = '#4285F4';
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 8px rgba(66, 133, 244, 0.3)';
+                }}
+              >Create New Learning Plan</button>
+            </div>
+          ) : (
+            <div className="posts-grid" style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
+              gap: '25px'
+            }}>
+              {filteredPosts.map((post) => (
+                <div key={post.id} className='post_card_new' style={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                  borderRadius: '15px',
+                  padding: '25px',
+                  boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
+                  transition: 'transform 0.3s, box-shadow 0.3s',
+                  height: '100%'
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-5px)';
+                  e.currentTarget.style.boxShadow = '0 12px 20px rgba(0, 0, 0, 0.15)';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.1)';
+                }}>
+                  {renderPostByTemplate(post)}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+      
+      {/* Modal for displaying full-size images */}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeImageModal}
+        contentLabel="Image Modal"
+        className="media-modal"
+        overlayClassName="media-modal-overlay"
+        style={{
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.75)',
+            zIndex: 1000,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          },
+          content: {
+            position: 'relative',
+            top: 'auto',
+            left: 'auto',
+            right: 'auto',
+            bottom: 'auto',
+            border: 'none',
+            background: 'transparent',
+            maxWidth: '90%',
+            maxHeight: '90%',
+            padding: 0
+          }
+        }}
+      >
+        <button 
+          className="close-modal-btn" 
+          onClick={closeImageModal}
+          style={{
+            position: 'absolute',
+            top: '-40px',
+            right: '-40px',
+            backgroundColor: '#FF6F61',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '50%',
+            width: '40px',
+            height: '40px',
+            fontSize: '20px',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseOver={(e) => {
+            e.target.style.backgroundColor = '#E64A45';
+            e.target.style.transform = 'scale(1.1)';
+          }}
+          onMouseOut={(e) => {
+            e.target.style.backgroundColor = '#FF6F61';
+            e.target.style.transform = 'scale(1)';
+          }}
+        >x</button>
+        {selectedImage && (
+          <img 
+            src={selectedImage} 
+            alt="Full Size" 
+            className="modal-media" 
+            style={{ maxWidth: '100%', maxHeight: '80vh', boxShadow: '0 5px 15px rgba(0, 0, 0, 0.3)' }} 
+          />
+        )}
+      </Modal>
+    </Layout>
+  );
+}
+
+export default AllLearningPlan;
