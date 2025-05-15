@@ -744,7 +744,88 @@ function AllPost() {
                     </div>
                   </div>
                 </div>
-
+                <div className='withsett'>
+                  <div className='add_comennt_con' style={{
+                    display: 'flex',
+                    marginBottom: '15px'
+                  }}>
+                    <input
+                      type="text"
+                      className='add_coment_input'
+                      placeholder="Add a comment"
+                      value={newComment[post.id] || ''}
+                      onChange={(e) =>
+                        setNewComment({ ...newComment, [post.id]: e.target.value })
+                      }
+                      style={{
+                        flex: '1',
+                        padding: '10px 15px',
+                        borderRadius: '20px',
+                        border: '1px solid #ccc',
+                        outline: 'none',
+                        boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)'
+                      }}
+                    />
+                    <IoSend
+                      onClick={() => handleAddComment(post.id)}
+                      className='add_coment_btn'
+                      style={{
+                        backgroundColor: '#4285F4',
+                        color: '#fff',
+                        padding: '10px',
+                        borderRadius: '50%',
+                        marginLeft: '10px',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 2px 5px rgba(66, 133, 244, 0.3)'
+                      }}
+                      onMouseOver={(e) => {
+                        e.target.style.backgroundColor = '#3367D6';
+                        e.target.style.transform = 'translateY(-2px)';
+                        e.target.style.boxShadow = '0 4px 8px rgba(66, 133, 244, 0.4)';
+                      }}
+                      onMouseOut={(e) => {
+                        e.target.style.backgroundColor = '#4285F4';
+                        e.target.style.transform = 'translateY(0)';
+                        e.target.style.boxShadow = '0 2px 5px rgba(66, 133, 244, 0.3)';
+                      }}
+                    />
+                  </div>
+                  <br/>
+                  {post.comments?.map((comment) => (
+                    <div key={comment.id} className='coment_full_card' style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-start',
+                      padding: '10px',
+                      backgroundColor: 'rgba(0, 0, 0, 0.02)',
+                      borderRadius: '8px',
+                      marginBottom: '10px'
+                    }}>
+                      <div className='comnt_card' style={{ flex: '1' }}>
+                        <p className='comnt_card_username' style={{ 
+                          fontWeight: 'bold', 
+                          color: '#4285F4',
+                          marginBottom: '5px',
+                          fontSize: '14px'
+                        }}>{comment.userFullName}</p>
+                        {editingComment.id === comment.id ? (
+                          <input
+                            type="text"
+                            className='edit_comment_input'
+                            value={editingComment.content}
+                            onChange={(e) =>
+                              setEditingComment({ ...editingComment, content: e.target.value })
+                            }
+                            autoFocus
+                            style={{
+                              width: '100%',
+                              padding: '8px 12px',
+                              borderRadius: '6px',
+                              border: '1px solid #4285F4',
+                              outline: 'none'
+                            }}
+                          />
 
       {/* Modal for displaying full media */}
       <Modal
