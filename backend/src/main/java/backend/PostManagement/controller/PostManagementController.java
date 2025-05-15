@@ -111,5 +111,11 @@ public class PostManagementController {
                 .orElseThrow(() -> new ResourceNotFoundException("Post not found: " + postId));
         return ResponseEntity.ok(post);
     }
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<?> deletePost(@PathVariable String postId) {
+        PostManagementModel post = postRepository.findById(postId)
+                .orElseThrow(() -> new ResourceNotFoundException("Post not found: " + postId));
+
+
 
 
