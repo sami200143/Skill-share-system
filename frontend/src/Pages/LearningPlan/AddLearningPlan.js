@@ -90,3 +90,17 @@ function AddLearningPlan() {
         });
         imageUrl = uploadResponse.data;
       }
+// Create the new post object
+      const newPost = {
+        title,
+        description,
+        contentURL,
+        tags,
+        postOwnerID,
+        postOwnerName,
+        imageUrl,
+        templateID,
+        startDate, // New field
+        endDate,   // New field
+        category   // New field
+      };
