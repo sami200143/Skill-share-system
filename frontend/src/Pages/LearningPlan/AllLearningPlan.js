@@ -104,7 +104,7 @@ function AllLearningPlan() {
 
   const applyFilters = (query, category, onlyMyPosts) => {
     let filtered = [...posts];
-    
+
 // Filter by search query
     if (query) {
       const lowerQuery = query.toLowerCase();
@@ -117,3 +117,16 @@ function AllLearningPlan() {
           (post.tags && post.tags.some(tag => tag.toLowerCase().includes(lowerQuery)))
       );
     }
+ // Filter by category
+    if (category) {
+      filtered = filtered.filter(post => post.category === category);
+    }
+    
+    // Filter by user's posts
+    if (onlyMyPosts) {
+      filtered = filtered.filter(post => post.postOwnerID === userId);
+    }
+    
+    setFilteredPosts(filtered);
+  };
+  
