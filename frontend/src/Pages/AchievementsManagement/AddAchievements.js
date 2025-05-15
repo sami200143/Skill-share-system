@@ -31,3 +31,11 @@ function AddAchievements() {
     }
   }, []);
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    processImageFile(file);
+  };
+
+  const processImageFile = (file) => {
+    const maxFileSize = 50 * 1024 * 1024; // 50MB
+
