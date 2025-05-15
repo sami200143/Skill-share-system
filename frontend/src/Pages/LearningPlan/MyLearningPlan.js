@@ -30,3 +30,33 @@ function MyLearningPlan() {
 
     fetchPosts();
   }, []);
+  
+ const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    const filtered = posts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(query) ||
+        post.description.toLowerCase().includes(query) ||
+        (post.category && post.category.toLowerCase().includes(query))
+    );
+    setFilteredPosts(filtered);
+  };
+
+  const getEmbedURL = (url) => {
+    try {
+      if (url.includes('youtube.com/watch')) {
+        const videoId = new URL(url).searchParams.get('v');
+        return `https://www.youtube.com/embed/${videoId}`;
+      }
+      if (url.includes('youtu.be/')) {
+        const videoId = url.split('youtu.be/')[1];
+        return `https://www.youtube.com/embed/${videoId}`;
+      }
+      return url;
+    } catch (error) {
+      console.error('Invalid URL:', url);
+      return '';
+    }
+  };
