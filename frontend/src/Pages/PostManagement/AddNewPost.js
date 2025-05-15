@@ -32,5 +32,22 @@ function AddNewPost() {
         alert(`File ${file.name} exceeds the maximum size of 50MB.`);
         return;
       }
+      if (file.type.startsWith('image/')) {
+        imageCount++;
+      } else if (file.type === 'video/mp4') {
+        videoCount++;
+
+        const video = document.createElement('video');
+        video.preload = 'metadata';
+        video.src = URL.createObjectURL(file);
+
+        video.onloadedmetadata = () => {
+          URL.revokeObjectURL(video.src);
+          if (video.duration > 30) {
+            alert(`Video ${file.name} exceeds the maximum duration of 30 seconds.`);
+            window.location.reload();
+          }
+        };
+
 
 }
