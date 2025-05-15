@@ -52,3 +52,23 @@ function AddNewPost() {
         alert(`Unsupported file type: ${file.type}`);
         return;
       }
+       // Add file preview object with type and URL
+      previews.push({ type: file.type, url: URL.createObjectURL(file) });
+    }
+
+    if (imageCount > 3) {
+      alert('You can upload a maximum of 3 images.');
+      return;
+    }
+
+    if (videoCount > 1) {
+      alert('You can upload only 1 video.');
+      return;
+    }
+
+    setMedia([...media, ...files]);
+    setMediaPreviews([...mediaPreviews, ...previews]);
+  };
+  const removeMedia = (index) => {
+    const updatedMedia = [...media];
+    const updatedPreviews = [...mediaPreviews];
