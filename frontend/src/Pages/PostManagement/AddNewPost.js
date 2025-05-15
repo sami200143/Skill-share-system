@@ -101,5 +101,37 @@ function AddNewPost() {
     processMediaFiles(files);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!title.trim()) {
+      alert('Please enter a title for your post');
+      return;
+    }
+    
+    if (!description.trim()) {
+      alert('Please enter a description for your post');
+      return;
+    }
+    
+    if (!categories) {
+      alert('Please select a category for your post');
+      return;
+    }
+    
+    if (media.length === 0) {
+      alert('Please upload at least one media file');
+      return;
+    }
+    
+    const formData = new FormData();
+    formData.append('userID', userID);
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('category', categories);
+    media.forEach((file) => formData.append('mediaFiles', file));
+
+    
+
 
 }
