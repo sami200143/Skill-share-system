@@ -131,7 +131,7 @@ function AddNewPost() {
     formData.append('category', categories);
     media.forEach((file) => formData.append('mediaFiles', file));
 
-    ry {
+   try {
       // Show loading state
       document.getElementById('submit-button').disabled = true;
       document.getElementById('submit-button').innerText = 'Creating Post...';
@@ -145,5 +145,12 @@ function AddNewPost() {
     } catch (error) {
       console.error(error);
       alert('Failed to create post. Please try again.');
+
+      // Reset button state
+      document.getElementById('submit-button').disabled = false;
+      document.getElementById('submit-button').innerText = 'Create Post';
+    }
+
+
 
 
