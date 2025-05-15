@@ -198,6 +198,30 @@ public class PostManagementController {
         return ResponseEntity.ok("Media file deleted successfully!");
     }
 
+    @PutMapping("/{postId}/like")
+    public ResponseEntity<PostManagementModel> likePost(@PathVariable String postId, @RequestParam String userID) {
+        return postRepository.findById(postId)
+                .map(post -> {
+                    post.getLikes().put(userID, !post.getLikes().getOrDefault(userID, false));
+                    postRepository.save(post);
+
+                    // Create a notification for the post owner
+                    if (!userID.equals(post.getUserID())) {
+                        String userFullName = userRepository.findById(userID)
+                                .map(user -> user.getFullname())
+                                .orElse("Someone");
+                        String message = String.format("%s liked your %s post", userFullName, post.getTitle());
+                        String currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                        NotificationModel notification = new NotificationModel(post.getUserID(), message, false, currentDateTime);
+                        notificationRepository.save(notification);
+                    }
+
+                    return ResponseEntity.ok(post);
+                })
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
+
 
 
 
