@@ -160,6 +160,23 @@ function AllPost() {
         params: { userID },
       });
 
+      // Update the specific post's likes in the state
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.id === postId ? { ...post, likes: response.data.likes } : post
+        )
+      );
+
+      setFilteredPosts((prevFilteredPosts) =>
+        prevFilteredPosts.map((post) =>
+          post.id === postId ? { ...post, likes: response.data.likes } : post
+        )
+      );
+    } catch (error) {
+      console.error('Error liking post:', error);
+    }
+  };
+
   const handleFollowToggle = async (postOwnerID) => {
     const userID = localStorage.getItem('userID');
     if (!userID) {
