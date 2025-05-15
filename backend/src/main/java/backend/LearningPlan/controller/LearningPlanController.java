@@ -46,12 +46,27 @@ public class LearningPlanController {
         // Fetch user's full name from UserRepository
         String postOwnerName = userRepository.findById(newLearningPlanModel.getPostOwnerID())
                 .map(user -> user.getFullname())
-                .orElseThrow(() -> new ResourceNotFoundException("User not found for ID: " + newLearningPlanModel.getPostOwnerID()));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "User not found for ID: " + newLearningPlanModel.getPostOwnerID()));
         newLearningPlanModel.setPostOwnerName(postOwnerName);
 
         // Set current date and time
         String currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         newLearningPlanModel.setCreatedAt(currentDateTime);
 
-        return learningPlanRepository.save(newLearningPlanModel); 
+        return learningPlanRepository.save(newLearningPlanModel);
+    }
+
+    // upload learning plan
+@PostMapping("/learningPlan/planUpload")
+    public String uploadImage(@RequestParam("file") MultipartFile file) {
+        try {
+            String extension = file.getOriginalFilename()
+                    .substring(file.getOriginalFilename().lastIndexOf("."));
+            String filename = UUID.randomUUID() + extension;
+            Files.copy(file.getInputStream(), this.root.resolve(filename));
+            return filename;
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to upload image: " + e.getMessage());
+        }
     }
