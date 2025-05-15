@@ -206,3 +206,176 @@ function AddAchievements() {
                         alt="Achievement preview" 
                         style={{ width: '100%', height: '150px', objectFit: 'cover' }}
                       />
+
+                                           <button 
+                        type="button" 
+                        className="remove-media-btn"
+                        onClick={removeImage}
+                        style={{
+                          position: 'absolute',
+                          top: '5px',
+                          right: '5px',
+                          backgroundColor: 'rgba(255, 111, 97, 0.8)',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '50%',
+                          width: '25px',
+                          height: '25px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer',
+                          padding: '0',
+                          transition: 'background-color 0.3s'
+                        }}
+                        onMouseOver={(e) => e.target.style.backgroundColor = 'rgba(230, 74, 69, 0.9)'}
+                        onMouseOut={(e) => e.target.style.backgroundColor = 'rgba(255, 111, 97, 0.8)'}
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <line x1="15" y1="9" x2="9" y2="15"></line>
+                          <line x1="9" y1="9" x2="15" y2="15"></line>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Title</label>
+              <input
+                className="form-input"
+                name="title"
+                placeholder="Enter achievement title"
+                value={formData.title}
+                onChange={handleChange}
+                required
+                style={{ 
+                  width: '100%', 
+                  padding: '12px', 
+                  borderRadius: '8px', 
+                  border: '1px solid #ccc', 
+                  fontSize: '16px', 
+                  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)' 
+                }}
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Description</label>
+              <textarea
+                className="form-textarea"
+                name="description"
+                placeholder="Describe your achievement..."
+                value={formData.description}
+                onChange={handleChange}
+                required
+                rows={4}
+                style={{ 
+                  width: '100%', 
+                  padding: '12px', 
+                  borderRadius: '8px', 
+                  border: '1px solid #ccc', 
+                  fontSize: '16px', 
+                  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
+                  resize: 'vertical'
+                }}
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Category</label>
+              <select
+                className="form-select"
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                required
+                style={{ 
+                  width: '100%', 
+                  padding: '12px', 
+                  borderRadius: '8px', 
+                  border: '1px solid #ccc', 
+                  fontSize: '16px', 
+                  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
+                  backgroundColor: 'white' 
+                }}
+              >
+                <option value="" disabled>Select a category</option>
+                <option value="Painting">Painting</option>
+                <option value="Drawing">Drawing</option>
+                <option value="Sculpture">Sculpture</option>
+                <option value="Photography">Photography</option>
+                <option value="Digital Art">Digital Art</option>
+                <option value="Illustration">Illustration</option>
+                <option value="Calligraphy">Calligraphy</option>
+                <option value="Graffiti / Street Art">Graffiti / Street Art</option>
+                <option value="Mixed Media">Mixed Media</option>
+                <option value="Printmaking">Printmaking</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Date</label>
+              <input
+                className="form-input"
+                name="date"
+                type="date"
+                value={formData.date}
+                onChange={handleChange}
+                required
+                style={{ 
+                  width: '100%', 
+                  padding: '12px', 
+                  borderRadius: '8px', 
+                  border: '1px solid #ccc', 
+                  fontSize: '16px', 
+                  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)' 
+                }}
+              />
+            </div>
+
+            <div style={{ margin: '30px 0', textAlign: 'center' }}>
+              <button 
+                id="submit-button"
+                type="submit" 
+                className="submit-button"
+                style={{
+                  width: '100%', 
+                  maxWidth: '400px',
+                  padding: '15px 25px', 
+                  backgroundColor: '#FF6F61', 
+                  color: '#fff', 
+                  border: 'none', 
+                  borderRadius: '10px', 
+                  fontSize: '18px', 
+                  cursor: 'pointer', 
+                  fontWeight: 'bold', 
+                  transition: 'all 0.3s ease', 
+                  boxShadow: '0 4px 12px rgba(255, 111, 97, 0.3)',
+                  letterSpacing: '0.5px'
+                }}
+                onMouseOver={(e) => {
+                  e.target.style.backgroundColor = '#E64A45';
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = '0 6px 14px rgba(255, 111, 97, 0.4)';
+                }}
+                onMouseOut={(e) => {
+                  e.target.style.backgroundColor = '#FF6F61';
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 12px rgba(255, 111, 97, 0.3)';
+                }}
+              >
+                Add Achievement
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </Layout>
+  );
+}
+
+export default AddAchievements;
