@@ -26,11 +26,11 @@ function AllAchievements() {
       .catch((error) => console.error('Error fetching Achievements data:', error));
   }, []);
 
-  const handleSearch = (e) => {
+    const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
 
-     // Filter achievements based on title or description
+    // Filter achievements based on title or description
     const filtered = progressData.filter(
       (achievement) =>
         achievement.title.toLowerCase().includes(query) ||
@@ -66,3 +66,37 @@ function AllAchievements() {
     setSelectedImage(null);
     setIsModalOpen(false);
   };
+
+  return (
+    <Layout>
+      <div className='continSection' style={{ 
+        maxWidth: '1200px',
+        margin: '20px auto',
+        padding: '0 15px',
+        marginTop: '80px',
+      }}>
+        <div className='searchinput' style={{ 
+          marginBottom: '20px',
+          display: 'flex',
+          justifyContent: 'center',
+          width: '100%'
+        }}>
+          <input
+            type="text"
+            className="Auth_input"
+            placeholder="Search achievements by title or description"
+            value={searchQuery}
+            onChange={handleSearch}
+            style={{ 
+              width: '70%', 
+              padding: '12px', 
+              borderRadius: '30px', 
+              border: '1px solid #ccc', 
+              fontSize: '16px', 
+              boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
+              textAlign: 'center'
+            }}
+          />
+        </div>
+        
+        
