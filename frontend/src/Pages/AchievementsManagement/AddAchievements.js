@@ -13,3 +13,40 @@ function AddAchievements() {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
+
+   useEffect(() => {
+    const userId = localStorage.getItem('userID');
+    if (userId) {
+      setFormData((prevData) => ({ ...prevData, postOwnerID: userId }));
+      fetch(`http://localhost:8080/user/${userId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data && data.fullname) {
+            setFormData((prevData) => ({ ...prevData, postOwnerName: data.fullname }));
+          }
+        })
+        .catch((error) => console.error('Error fetching user data:', error));
+    }
+  }, []);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    processImageFile(file);
+  };
+
+  const processImageFile = (file) => {
+    const maxFileSize = 50 * 1024 * 1024; // 50MB
+
+    if (file.size > maxFileSize) {
+      alert('File exceeds the maximum size of 50MB.');
+      return;
+    }
+
+    if (!file.type.startsWith('image/')) {
+      alert('Only image files are supported.');
+      return;
+    }
+
+    setImage(file);
+    setImagePreview(URL.createObjectURL(file));
+  };
