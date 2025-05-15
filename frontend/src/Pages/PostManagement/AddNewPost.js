@@ -151,6 +151,23 @@ function AddNewPost() {
       document.getElementById('submit-button').innerText = 'Create Post';
     }
      return (
+      <div className="add-post-container" style={{ 
+      position: 'relative', 
+      minHeight: '100vh',
+      backgroundColor: '#f9f9f9',
+      paddingBottom: '50px',
+      paddingTop: '20px'
+    }}>
+      <div className="gradient-overlay" style={{ 
+        position: 'absolute', 
+        top: 0, 
+        left: 0, 
+        width: '100%', 
+        height: '100%', 
+        background: 'linear-gradient(135deg, rgba(65, 105, 225, 0.1), rgba(219, 112, 147, 0.2))', 
+        zIndex: 1 
+      }}></div>
+      
     <div className="add-post-container" style={{ 
       position: 'relative', 
       minHeight: '100vh',
