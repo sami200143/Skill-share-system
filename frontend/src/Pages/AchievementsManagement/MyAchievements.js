@@ -260,3 +260,131 @@ function MyAchievements() {
                       </div>
                     </div>
                   )}
+                </div>
+                <div className='dis_con'>
+                  <p className='topic_cont' style={{ 
+                    color: '#333', 
+                    fontSize: '22px', 
+                    fontWeight: 'bold',
+                    marginBottom: '10px'
+                  }}>{progress.title}</p>
+                  <p className='dis_con_pera' style={{ 
+                    whiteSpace: "pre-line",
+                    color: '#555',
+                    fontSize: '16px',
+                    lineHeight: '1.6',
+                    marginBottom: '10px'
+                  }}>{progress.description}</p>
+
+                  {progress.imageUrl && (
+                    <div 
+                      className="achievement-image-container"
+                      style={{
+                        marginTop: '15px',
+                        borderRadius: '8px',
+                        overflow: 'hidden',
+                        maxWidth: '100%',
+                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                        cursor: 'pointer'
+                      }}
+                      onClick={() => openModal(`http://localhost:8080/achievements/images/${progress.imageUrl}`)}
+                    >
+                      <img
+                        src={`http://localhost:8080/achievements/images/${progress.imageUrl}`}
+                        alt="Achievement"
+                        className='achievement_image'
+                        style={{ 
+                          width: '100%',
+                          maxHeight: '400px',
+                         
+                          transition: 'transform 0.3s ease'
+                        }}
+                        onMouseOver={(e) => {
+                          e.target.style.transform = 'scale(1.05)';
+                        }}
+                        onMouseOut={(e) => {
+                          e.target.style.transform = 'scale(1)';
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+
+      {/* Modal for displaying full image */}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Image Modal"
+        className="media-modal"
+        overlayClassName="media-modal-overlay"
+        style={{
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.75)',
+            zIndex: 1000,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          },
+          content: {
+            position: 'relative',
+            top: 'auto',
+            left: 'auto',
+            right: 'auto',
+            bottom: 'auto',
+            border: 'none',
+            background: 'transparent',
+            maxWidth: '90%',
+            maxHeight: '90%',
+            padding: 0
+          }
+        }}
+      >
+        <button 
+          className="close-modal-btn" 
+          onClick={closeModal}
+          style={{
+            position: 'absolute',
+            top: '-40px',
+            right: '-40px',
+            backgroundColor: '#FF6F61',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '50%',
+            width: '40px',
+            height: '40px',
+            fontSize: '20px',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseOver={(e) => {
+            e.target.style.backgroundColor = '#E64A45';
+            e.target.style.transform = 'scale(1.1)';
+          }}
+          onMouseOut={(e) => {
+            e.target.style.backgroundColor = '#FF6F61';
+            e.target.style.transform = 'scale(1)';
+          }}
+        >x</button>
+        {selectedImage && (
+          <img 
+            src={selectedImage} 
+            alt="Full Achievement" 
+            className="modal-media" 
+            style={{ maxWidth: '100%', maxHeight: '80vh', boxShadow: '0 5px 15px rgba(0, 0, 0, 0.3)' }} 
+          />
+        )}
+      </Modal>
+    </Layout>
+  );
+}
+
+export default MyAchievements;
