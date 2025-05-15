@@ -104,3 +104,16 @@ function AllLearningPlan() {
 
   const applyFilters = (query, category, onlyMyPosts) => {
     let filtered = [...posts];
+    
+// Filter by search query
+    if (query) {
+      const lowerQuery = query.toLowerCase();
+      filtered = filtered.filter(
+        (post) =>
+          post.title?.toLowerCase().includes(lowerQuery) ||
+          post.description?.toLowerCase().includes(lowerQuery) ||
+          post.postOwnerName?.toLowerCase().includes(lowerQuery) ||
+          (post.category && post.category.toLowerCase().includes(lowerQuery)) ||
+          (post.tags && post.tags.some(tag => tag.toLowerCase().includes(lowerQuery)))
+      );
+    }
