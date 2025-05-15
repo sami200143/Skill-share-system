@@ -40,4 +40,18 @@ public class AchievementsController {
                 .orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
+ @PutMapping("/achievements/{id}")
+    AchievementsModel update(@RequestBody AchievementsModel newAchievementsModel, @PathVariable String id) {
+        return achievementsRepository.findById(id)
+                .map(achievementsModel -> {
+                    achievementsModel.setTitle(newAchievementsModel.getTitle());
+                    achievementsModel.setDescription(newAchievementsModel.getDescription());
+                    achievementsModel.setPostOwnerID(newAchievementsModel.getPostOwnerID());
+                    achievementsModel.setPostOwnerName(newAchievementsModel.getPostOwnerName());
+                    achievementsModel.setDate(newAchievementsModel.getDate());
+                    achievementsModel.setCategory(newAchievementsModel.getCategory());
+                    achievementsModel.setImageUrl(newAchievementsModel.getImageUrl());
+                    return achievementsRepository.save(achievementsModel);
+                }).orElseThrow(() -> new ResourceNotFoundException(id));
+    }
 
