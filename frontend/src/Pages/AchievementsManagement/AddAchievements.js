@@ -110,3 +110,11 @@ function AddAchievements() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...formData, imageUrl }),
       });
+
+      if (response.ok) {
+        alert('Achievement added successfully!');
+        window.location.href = '/myAchievements';
+      } else {
+        throw new Error('Failed to add Achievement');
+      }
+    } 
