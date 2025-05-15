@@ -131,6 +131,20 @@ public class PostManagementController {
         postRepository.deleteById(postId);
         return ResponseEntity.ok("Post deleted successfully!");
     }
+     @PutMapping("/{postId}")
+    public ResponseEntity<?> updatePost(
+            @PathVariable String postId,
+            @RequestParam String title,
+            @RequestParam String description,
+            @RequestParam String category, // Include category parameter
+            @RequestParam(required = false) List<MultipartFile> newMediaFiles) {
+
+        PostManagementModel post = postRepository.findById(postId)
+                .orElseThrow(() -> new ResourceNotFoundException("Post not found: " + postId));
+
+        post.setTitle(title);
+        post.setDescription(description);
+        post.setCategory(category); // Update category
 
 
 
