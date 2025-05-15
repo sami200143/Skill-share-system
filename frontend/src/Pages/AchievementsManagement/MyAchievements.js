@@ -69,3 +69,66 @@ function MyAchievements() {
     setSelectedImage(null);
     setIsModalOpen(false);
   };
+
+  return (
+    <Layout>
+      <div className='continSection' style={{ 
+        maxWidth: '1200px',
+        margin: '20px auto',
+        padding: '0 15px',
+        marginTop: '80px',
+      }}>
+        <div className='searchinput' style={{ 
+          marginBottom: '20px',
+          display: 'flex',
+          justifyContent: 'center',
+          width: '100%'
+        }}>
+          <input
+            type="text"
+            className="Auth_input"
+            placeholder="Search achievements by title or description"
+            value={searchQuery}
+            onChange={handleSearch}
+            style={{ 
+              width: '70%', 
+              padding: '12px', 
+              borderRadius: '30px', 
+              border: '1px solid #ccc', 
+              fontSize: '16px', 
+              boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
+              textAlign: 'center'
+            }}
+          />
+        </div>
+        
+        <div className='add_new_btn' 
+          onClick={() => (window.location.href = '/addAchievements')}
+          style={{
+            backgroundColor: '#FF6F61',
+            color: '#fff',
+            borderRadius: '50%',
+            width: '60px',
+            height: '60px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 0 20px auto',
+            boxShadow: '0 4px 12px rgba(255, 111, 97, 0.3)',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.backgroundColor = '#E64A45';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 6px 14px rgba(255, 111, 97, 0.4)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.backgroundColor = '#FF6F61';
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 111, 97, 0.3)';
+          }}
+        >
+          <IoIosCreate className='add_new_btn_icon' style={{ fontSize: '24px' }}/>
+        </div>
+        
