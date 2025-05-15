@@ -10,6 +10,7 @@ function AddAchievements() {
     category: '',
     postOwnerName: '',
   });
+
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -37,7 +38,7 @@ function AddAchievements() {
   const processImageFile = (file) => {
     const maxFileSize = 50 * 1024 * 1024; // 50MB
 
-    if (file.size > maxFileSize) {
+       if (file.size > maxFileSize) {
       alert('File exceeds the maximum size of 50MB.');
       return;
     }
@@ -47,7 +48,7 @@ function AddAchievements() {
       return;
     }
 
-    setImage(file);
+     setImage(file);
     setImagePreview(URL.createObjectURL(file));
   };
   const handleDragOver = (e) => {
@@ -83,7 +84,7 @@ function AddAchievements() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!image) {
+     if (!image) {
       alert('Please upload an image');
       return;
     }
@@ -114,6 +115,7 @@ function AddAchievements() {
       } else {
         throw new Error('Failed to add Achievement');
       }
+
     } catch (error) {
       alert('Failed to add Achievement. Please try again.');
       submitButton.disabled = false;
@@ -379,3 +381,6 @@ function AddAchievements() {
 }
 
 export default AddAchievements;
+
+    } 
+

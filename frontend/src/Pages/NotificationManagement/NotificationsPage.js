@@ -45,7 +45,7 @@ function NotificationsPage() {
     }
   };
 
-  return (
+   return (
     <div className="add-post-container" style={{ 
       position: 'relative', 
       minHeight: '100vh',

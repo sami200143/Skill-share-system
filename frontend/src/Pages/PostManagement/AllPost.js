@@ -75,7 +75,7 @@ function AllPost() {
     fetchPosts();
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { //user effects 
     const fetchFollowedUsers = async () => {
       const userID = localStorage.getItem('userID');
       if (userID) {
@@ -110,7 +110,7 @@ function AllPost() {
   const handleDelete = async (postId) => {
     const confirmDelete = window.confirm('Are you sure you want to delete this post?');
     if (!confirmDelete) {
-      return; // Exit if the user cancels the confirmation
+      return; // Exit if the user cancels the confirmation-
     }
 
     try {
@@ -125,7 +125,7 @@ function AllPost() {
   };
 
   const handleUpdate = (postId) => {
-    navigate(`/updatePost/${postId}`); // Navigate to the UpdatePost page with the post ID
+    navigate(`/updatePost/${postId}`); // Add Navigate to the UpdatePost page with the post ID
   };
 
   const handleMyPostsToggle = () => {
@@ -133,7 +133,7 @@ function AllPost() {
     setShowFollowingPosts(false);
     
     if (showMyPosts) {
-      // Show all posts
+      // Show all posts -
       setFilteredPosts(posts);
     } else {
       // Filter posts by logged-in user ID
@@ -198,7 +198,7 @@ function AllPost() {
     }
   };
 
-  const handleAddComment = async (postId) => {
+ const handleAddComment = async (postId) => {
     const userID = localStorage.getItem('userID');
     if (!userID) {
       alert('Please log in to comment.');
@@ -214,7 +214,6 @@ function AllPost() {
         userID,
         content,
       });
-
       // Update the specific post's comments in the state
       setPosts((prevPosts) =>
         prevPosts.map((post) =>
@@ -233,7 +232,6 @@ function AllPost() {
       console.error('Error adding comment:', error);
     }
   };
-
   const handleDeleteComment = async (postId, commentId) => {
     const userID = localStorage.getItem('userID');
     try {
@@ -270,7 +268,7 @@ function AllPost() {
         content,
       });
 
-      // Update the comment in state
+      // Update  the comment in state
       setPosts((prevPosts) =>
         prevPosts.map((post) =>
           post.id === postId
@@ -896,7 +894,7 @@ function AllPost() {
                                     e.target.style.transform = 'scale(1)';
                                   }}
                                 />
-                              </>
+                              </>                          
                             ) : (
                               <>
                                 <GrUpdate className='coment_btn' 
@@ -995,7 +993,6 @@ function AllPost() {
           )}
         </div>
       </div>
-
       {/* Modal for displaying full media */}
       <Modal
         isOpen={isModalOpen}

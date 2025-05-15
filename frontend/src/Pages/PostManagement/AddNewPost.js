@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import NavBar from '../../Components/NavBar/NavBar';
-import './AddNewPost.css'; // Make sure to include the CSS file
+import './AddNewPost.css'; // Make sure to include the CSS filee
 
+//create function for add post
 function AddNewPost() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -16,7 +17,10 @@ function AddNewPost() {
     const files = Array.from(e.target.files);
     processMediaFiles(files);
   };
-
+  const handleMediaChange = (e) => {
+    const files = Array.from(e.target.files);
+    processMediaFiles(files);
+  };
   const processMediaFiles = (files) => {
     const maxFileSize = 50 * 1024 * 1024; // 50MB
     let imageCount = 0;
@@ -28,13 +32,11 @@ function AddNewPost() {
         alert(`File ${file.name} exceeds the maximum size of 50MB.`);
         return;
       }
-
       if (file.type.startsWith('image/')) {
         imageCount++;
       } else if (file.type === 'video/mp4') {
         videoCount++;
 
-        // Validate video duration
         const video = document.createElement('video');
         video.preload = 'metadata';
         video.src = URL.createObjectURL(file);
@@ -46,12 +48,11 @@ function AddNewPost() {
             window.location.reload();
           }
         };
-      } else {
+         } else {
         alert(`Unsupported file type: ${file.type}`);
         return;
       }
-
-      // Add file preview object with type and URL
+       // Add file preview object with type and URL
       previews.push({ type: file.type, url: URL.createObjectURL(file) });
     }
 
@@ -68,11 +69,10 @@ function AddNewPost() {
     setMedia([...media, ...files]);
     setMediaPreviews([...mediaPreviews, ...previews]);
   };
-
   const removeMedia = (index) => {
     const updatedMedia = [...media];
     const updatedPreviews = [...mediaPreviews];
-    
+
     // Revoke the object URL to prevent memory leaks
     URL.revokeObjectURL(mediaPreviews[index].url);
     
@@ -131,7 +131,7 @@ function AddNewPost() {
     formData.append('category', categories);
     media.forEach((file) => formData.append('mediaFiles', file));
 
-    try {
+   try {
       // Show loading state
       document.getElementById('submit-button').disabled = true;
       document.getElementById('submit-button').innerText = 'Creating Post...';
@@ -145,15 +145,13 @@ function AddNewPost() {
     } catch (error) {
       console.error(error);
       alert('Failed to create post. Please try again.');
-      
+
       // Reset button state
       document.getElementById('submit-button').disabled = false;
       document.getElementById('submit-button').innerText = 'Create Post';
     }
-  };
-
-  return (
-    <div className="add-post-container" style={{ 
+    return (
+      <div className="add-post-container" style={{ 
       position: 'relative', 
       minHeight: '100vh',
       backgroundColor: '#f9f9f9',
@@ -169,8 +167,15 @@ function AddNewPost() {
         background: 'linear-gradient(135deg, rgba(65, 105, 225, 0.1), rgba(219, 112, 147, 0.2))', 
         zIndex: 1 
       }}></div>
-      
-      <NavBar />
+
+    <div className="add-post-container" style={{ 
+      position: 'relative', 
+      minHeight: '100vh',
+      backgroundColor: '#f9f9f9',
+      paddingBottom: '50px',
+      paddingTop: '20px'
+    }}></div>
+    <NavBar />
       
       <div className="post-content-wrapper" style={{ 
         position: 'relative', 
@@ -216,6 +221,57 @@ function AddNewPost() {
               />
             </div>
             
+            <div className="form-group">
+              <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Description</label>
+              <textarea
+                className="form-textarea"
+                placeholder="Share your thoughts..."
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+                rows={4}
+                style={{ 
+                  width: '100%', 
+                  padding: '12px', 
+                  borderRadius: '8px', 
+                  border: '1px solid #ccc', 
+                  fontSize: '16px', 
+                  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
+                  resize: 'vertical'
+                }}
+              />
+            </div>
+            
+            <div className="form-group">
+              <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Category</label>
+              <select
+                className="form-select"
+                value={categories}
+                onChange={(e) => setCategories(e.target.value)}
+                required
+                style={{ 
+                  width: '100%', 
+                  padding: '12px', 
+                  borderRadius: '8px', 
+                  border: '1px solid #ccc', 
+                  fontSize: '16px', 
+                  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)',
+                  backgroundColor: '#fff'
+                }}
+              >
+                <option value="" disabled>Select a category</option>
+                <option value="Painting">Painting</option>
+                <option value="Drawing">Drawing</option>
+                <option value="Sculpture">Sculpture</option>
+                <option value="Photography">Photography</option>
+                <option value="Digital Art">Digital Art</option>
+                <option value="Illustration">Illustration</option>
+                <option value="Calligraphy">Calligraphy</option>
+                <option value="Graffiti / Street Art">Graffiti / Street Art</option>
+                <option value="Mixed Media">Mixed Media</option>
+                <option value="Printmaking">Printmaking</option>
+              </select>
+            </div>
             <div className="form-group">
               <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Description</label>
               <textarea
@@ -408,3 +464,9 @@ function AddNewPost() {
 }
 
 export default AddNewPost;
+};
+
+
+
+
+
