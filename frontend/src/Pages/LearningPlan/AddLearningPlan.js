@@ -90,8 +90,7 @@ function AddLearningPlan() {
         });
         imageUrl = uploadResponse.data;
       }
-
-      // Create the new post object
+// Create the new post object
       const newPost = {
         title,
         description,
@@ -105,7 +104,6 @@ function AddLearningPlan() {
         endDate,   // New field
         category   // New field
       };
-
       // Submit the post data
       await axios.post('http://localhost:8080/learningPlan', newPost);
       alert('Post added successfully!');
@@ -225,7 +223,6 @@ function AddLearningPlan() {
             </div>
           </div>
         </div>
-
         <div className="post-form-container" style={{
           backgroundColor: 'rgba(255, 255, 255, 0.9)',
           borderRadius: '15px',
@@ -691,3 +688,4 @@ function AddLearningPlan() {
 }
 
 export default AddLearningPlan;
+

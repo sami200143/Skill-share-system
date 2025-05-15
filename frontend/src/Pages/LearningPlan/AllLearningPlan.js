@@ -8,8 +8,7 @@ import { HiCalendarDateRange } from "react-icons/hi2";
 import Modal from 'react-modal';
 import Layout from '../../Components/Layout/Layout';
 
-Modal.setAppElement('#root'); // Set the app element for accessibility
-
+Modal.setAppElement('#root');
 function AllLearningPlan() {
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
@@ -55,6 +54,8 @@ function AllLearningPlan() {
       return ''; // Return an empty string for invalid URLs
     }
   };
+
+  //create handling delete
 
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm('Are you sure you want to delete this post?');

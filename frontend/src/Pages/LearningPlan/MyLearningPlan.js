@@ -7,6 +7,7 @@ import { IoIosCreate } from "react-icons/io";
 import { HiCalendarDateRange } from "react-icons/hi2";
 import Layout from '../../Components/Layout/Layout';
 
+//create my learning plan
 function MyLearningPlan() {
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
@@ -17,6 +18,7 @@ function MyLearningPlan() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        //filter the plans
         const response = await axios.get('http://localhost:8080/learningPlan');
         const userPosts = response.data.filter(post => post.postOwnerID === userId);
         setPosts(userPosts);
@@ -59,6 +61,7 @@ function MyLearningPlan() {
     }
   };
 
+  //Handle delete
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm('Are you sure you want to delete this post?');
     if (confirmDelete) {
@@ -563,6 +566,8 @@ function MyLearningPlan() {
             }}
           />
         </div>
+      
+        
 
         <div className='add_new_btn' 
           onClick={() => (window.location.href = '/addLearningPlan')}
@@ -635,6 +640,7 @@ function MyLearningPlan() {
               >Create New Learning Plan</button>
             </div>
           ) : (
+            //display the learning plans
             filteredPosts.map((post) => (
               <div key={post.id} className='post_card_new' style={{
                 backgroundColor: 'rgba(255, 255, 255, 0.9)',

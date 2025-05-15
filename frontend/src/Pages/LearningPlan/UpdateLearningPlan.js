@@ -49,7 +49,6 @@ function UpdateLearningPost() {
 
     fetchPost();
     
-    // Cleanup function to revoke object URLs when component unmounts
     return () => {
       if (imagePreview) {
         URL.revokeObjectURL(imagePreview);
@@ -89,14 +88,12 @@ function UpdateLearningPost() {
       return;
     }
 
-    // Clean up previous preview URL if exists
     if (imagePreview) {
       URL.revokeObjectURL(imagePreview);
     }
 
     setImage(file);
     setImagePreview(URL.createObjectURL(file));
-    // When new image is selected, clear existing image reference
     setExistingImage('');
   };
 
@@ -280,7 +277,8 @@ function UpdateLearningPost() {
     }
     return null;
   };
-
+  
+  //wrapper the content
   return (
     <Layout>
       <div className="post-content-wrapper" style={{
