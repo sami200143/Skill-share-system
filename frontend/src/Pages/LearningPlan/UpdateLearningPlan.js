@@ -27,3 +27,39 @@ function UpdateLearningPost() {
   const [showImageUploadInput, setShowImageUploadInput] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+   
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/learningPlan/${id}`);
+        const { title, description, contentURL, tags, imageUrl, templateID, startDate, endDate, category } = response.data;
+        setTitle(title);
+        setDescription(description);
+        setContentURL(contentURL);
+        setTags(tags);
+        setExistingImage(imageUrl);
+        setTemplateID(templateID);
+        setStartDate(startDate);
+        setEndDate(endDate);
+        setCategory(category);
+      } catch (error) {
+        console.error('Error fetching post:', error);
+      }
+    };
+
+    fetchPost();
+    
+    return () => {
+      if (imagePreview) {
+        URL.revokeObjectURL(imagePreview);
+      }
+    };
+  }, [id]);
+
+  const handleAddTag = () => {
+    if (tagInput.trim() !== '') {
+      setTags([...tags, tagInput.trim()]);
+      setTagInput('');
+    }
+  };
+
