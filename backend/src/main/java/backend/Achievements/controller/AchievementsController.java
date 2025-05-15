@@ -1,21 +1,26 @@
 package backend.Achievements.controller;
 
-import backend.exception.ResourceNotFoundException;
-import backend.Achievements.model.AchievementsModel;
-import backend.Achievements.repository.AchievementsRepository;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.UUID;
+import backend.Achievements.model.AchievementsModel;
+import backend.Achievements.repository.AchievementsRepository;
+import backend.exception.ResourceNotFoundException;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
@@ -55,3 +60,21 @@ public class AchievementsController {
                 }).orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
+       @DeleteMapping("/achievements/{id}")
+    public void delete(@PathVariable String id) {
+        achievementsRepository.deleteById(id);
+    }
+
+    @GetMapping("/achievements/images/{filename:.+}")
+    public ResponseEntity<Resource> getImage(@PathVariable String filename) {
+        try {
+            Path file = root.resolve(filename);
+            Resource resource = new UrlResource(file.toUri());
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .body(resource);
+        } catch (Exception e) {
+            throw new RuntimeException("Error loading image: " + e.getMessage());
+        }
+    }
+}
