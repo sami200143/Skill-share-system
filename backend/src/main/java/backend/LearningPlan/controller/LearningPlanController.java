@@ -70,3 +70,31 @@ public class LearningPlanController {
             throw new RuntimeException("Failed to upload image: " + e.getMessage());
         }
     }
+
+
+     @GetMapping("/learningPlan")
+    List<LearningPlanModel> getAll() {
+        List<LearningPlanModel> posts = learningPlanRepository.findAll();
+        posts.forEach(post -> {
+            if (post.getPostOwnerID() != null) {
+                String postOwnerName = userRepository.findById(post.getPostOwnerID())
+                        .map(user -> user.getFullname())
+                        .orElse("Unknown User");
+                post.setPostOwnerName(postOwnerName);
+            }
+        });
+        return posts;
+    }
+
+    @GetMapping("/learningPlan/{id}")
+    LearningPlanModel getById(@PathVariable String id) {
+        LearningPlanModel post = learningPlanRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
+        if (post.getPostOwnerID() != null) {
+            String postOwnerName = userRepository.findById(post.getPostOwnerID())
+                    .map(user -> user.getFullname())
+                    .orElse("Unknown User");
+            post.setPostOwnerName(postOwnerName);
+        }
+        return post;
+    }
