@@ -156,7 +156,6 @@ function UpdateAchievements() {
       window.location.href = '/allAchievements';
     }
   };
-
   return (
     <Layout>
       <div className="post-content-wrapper" style={{ 

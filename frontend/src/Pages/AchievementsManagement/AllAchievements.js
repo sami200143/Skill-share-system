@@ -26,7 +26,7 @@ function AllAchievements() {
       .catch((error) => console.error('Error fetching Achievements data:', error));
   }, []);
 
-  const handleSearch = (e) => {
+    const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
 
@@ -147,7 +147,6 @@ function AllAchievements() {
                 onClick={() => (window.location.href = '/addAchievements')}
                 style={{
                   backgroundColor: '#4285F4',
-                  color: '#fff',
                   border: 'none',
                   borderRadius: '8px',
                   padding: '12px 25px',
@@ -243,8 +242,8 @@ function AllAchievements() {
                       </div>
                     </div>
                   )}
-                </div>
-                <div className='dis_con' style={{ marginBottom: '15px' }}>
+                </div>        
+<div className='dis_con' style={{ marginBottom: '15px' }}>
                   <p className='topic_cont' style={{ 
                     color: '#333', 
                     fontSize: '38px', 

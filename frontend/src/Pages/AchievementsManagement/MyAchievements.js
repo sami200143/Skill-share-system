@@ -15,7 +15,6 @@ function MyAchievements() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-
   useEffect(() => {
     fetch('http://localhost:8080/achievements')
       .then((response) => response.json())
@@ -49,7 +48,6 @@ function MyAchievements() {
       alert('Failed to delete Achievement.');
     }
   };
-
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
@@ -133,8 +131,7 @@ function MyAchievements() {
         >
           <IoIosCreate className='add_new_btn_icon' style={{ fontSize: '24px' }}/>
         </div>
-        
-        <div className='post_card_continer'>
+                <div className='post_card_continer'>
           {filteredData.length === 0 ? (
             <div className='not_found_box' style={{
               backgroundColor: 'rgba(255, 255, 255, 0.9)',
