@@ -688,7 +688,14 @@ function AllPost() {
                     </div>
                   ))}
                 </div>
-                
+                <div className='like_coment_lne' style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  padding: '10px 0',
+                  borderTop: '1px solid rgba(0, 0, 0, 0.1)',
+                  borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+                  marginBottom: '15px'
+                }}>
                   <div className='like_btn_con' style={{ display: 'flex', alignItems: 'center' }}>
                     <BiSolidLike
                       className={post.likes?.[localStorage.getItem('userID')] ? 'unlikebtn' : 'likebtn'}
