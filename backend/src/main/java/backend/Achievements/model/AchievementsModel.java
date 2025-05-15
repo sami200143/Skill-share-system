@@ -19,3 +19,14 @@ public class AchievementsModel {
     public AchievementsModel() {
 
     }
+
+    public AchievementsModel(String id, String postOwnerID, String postOwnerName, String title, String description, String date, String category,String imageUrl) {
+        this.id = id;
+        this.postOwnerID = postOwnerID;
+        this.postOwnerName = postOwnerName;
+        this.title = title;
+        this.description = description;
+        this.date = date;
+        this.category = category;
+        this.imageUrl = imageUrl;
+    }
