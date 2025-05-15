@@ -214,6 +214,24 @@ function AllPost() {
         userID,
         content,
       });
+      // Update the specific post's comments in the state
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.id === postId ? { ...post, comments: response.data.comments } : post
+        )
+      );
+
+      setFilteredPosts((prevFilteredPosts) =>
+        prevFilteredPosts.map((post) =>
+          post.id === postId ? { ...post, comments: response.data.comments } : post
+        )
+      );
+
+      setNewComment({ ...newComment, [postId]: '' });
+    } catch (error) {
+      console.error('Error adding comment:', error);
+    }
+  };
 
 
   const handleSearch = (e) => {
