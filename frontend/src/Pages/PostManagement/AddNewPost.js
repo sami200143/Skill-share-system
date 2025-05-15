@@ -69,6 +69,9 @@ function AddNewPost() {
     setMedia([...media, ...files]);
     setMediaPreviews([...mediaPreviews, ...previews]);
   };
+  const removeMedia = (index) => {
+    const updatedMedia = [...media];
+    const updatedPreviews = [...mediaPreviews];
 
 
 }
