@@ -198,7 +198,7 @@ function AllPost() {
     }
   };
 
-  const handleAddComment = async (postId) => {
+ const handleAddComment = async (postId) => {
     const userID = localStorage.getItem('userID');
     if (!userID) {
       alert('Please log in to comment.');
@@ -215,93 +215,6 @@ function AllPost() {
         content,
       });
 
-      // Update the specific post's comments in the state
-      setPosts((prevPosts) =>
-        prevPosts.map((post) =>
-          post.id === postId ? { ...post, comments: response.data.comments } : post
-        )
-      );
-
-      setFilteredPosts((prevFilteredPosts) =>
-        prevFilteredPosts.map((post) =>
-          post.id === postId ? { ...post, comments: response.data.comments } : post
-        )
-      );
-
-      setNewComment({ ...newComment, [postId]: '' });
-    } catch (error) {
-      console.error('Error adding comment:', error);
-    }
-  };
-
-  const handleDeleteComment = async (postId, commentId) => {
-    const userID = localStorage.getItem('userID');
-    try {
-      await axios.delete(`http://localhost:8080/posts/${postId}/comment/${commentId}`, {
-        params: { userID },
-      });
-
-      // Update state to remove the deleted comment
-      setPosts((prevPosts) =>
-        prevPosts.map((post) =>
-          post.id === postId
-            ? { ...post, comments: post.comments.filter((comment) => comment.id !== commentId) }
-            : post
-        )
-      );
-
-      setFilteredPosts((prevFilteredPosts) =>
-        prevFilteredPosts.map((post) =>
-          post.id === postId
-            ? { ...post, comments: post.comments.filter((comment) => comment.id !== commentId) }
-            : post
-        )
-      );
-    } catch (error) {
-      console.error('Error deleting comment:', error);
-    }
-  };
-
-  const handleSaveComment = async (postId, commentId, content) => {
-    try {
-      const userID = localStorage.getItem('userID');
-      await axios.put(`http://localhost:8080/posts/${postId}/comment/${commentId}`, {
-        userID,
-        content,
-      });
-
-      // Update  the comment in state
-      setPosts((prevPosts) =>
-        prevPosts.map((post) =>
-          post.id === postId
-            ? {
-              ...post,
-              comments: post.comments.map((comment) =>
-                comment.id === commentId ? { ...comment, content } : comment
-              ),
-            }
-            : post
-        )
-      );
-
-      setFilteredPosts((prevFilteredPosts) =>
-        prevFilteredPosts.map((post) =>
-          post.id === postId
-            ? {
-              ...post,
-              comments: post.comments.map((comment) =>
-                comment.id === commentId ? { ...comment, content } : comment
-              ),
-            }
-            : post
-        )
-      );
-
-      setEditingComment({}); // Clear editing state
-    } catch (error) {
-      console.error('Error saving comment:', error);
-    }
-  };
 
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
