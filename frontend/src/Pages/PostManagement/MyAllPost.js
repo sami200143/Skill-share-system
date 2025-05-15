@@ -159,7 +159,7 @@ function MyAllPost() {
     }
   };
 
-  const handleAddComment = async (postId) => {
+const handleAddComment = async (postId) => {
     const userID = localStorage.getItem('userID');
     if (!userID) {
       alert('Please log in to comment.');
@@ -191,73 +191,6 @@ function MyAllPost() {
       setNewComment({ ...newComment, [postId]: '' });
     } catch (error) {
       console.error('Error adding comment:', error);
-    }
-  };
-
-  const handleDeleteComment = async (postId, commentId) => {
-    const userID = localStorage.getItem('userID');
-    try {
-      await axios.delete(`http://localhost:8080/posts/${postId}/comment/${commentId}`, {
-        params: { userID },
-      });
-
-      setPosts((prevPosts) =>
-        prevPosts.map((post) =>
-          post.id === postId
-            ? { ...post, comments: post.comments.filter((comment) => comment.id !== commentId) }
-            : post
-        )
-      );
-
-      setFilteredPosts((prevFilteredPosts) =>
-        prevFilteredPosts.map((post) =>
-          post.id === postId
-            ? { ...post, comments: post.comments.filter((comment) => comment.id !== commentId) }
-            : post
-        )
-      );
-    } catch (error) {
-      console.error('Error deleting comment:', error);
-    }
-  };
-
-  const handleSaveComment = async (postId, commentId, content) => {
-    try {
-      const userID = localStorage.getItem('userID');
-      await axios.put(`http://localhost:8080/posts/${postId}/comment/${commentId}`, {
-        userID,
-        content,
-      });
-
-      setPosts((prevPosts) =>
-        prevPosts.map((post) =>
-          post.id === postId
-            ? {
-              ...post,
-              comments: post.comments.map((comment) =>
-                comment.id === commentId ? { ...comment, content } : comment
-              ),
-            }
-            : post
-        )
-      );
-
-      setFilteredPosts((prevFilteredPosts) =>
-        prevFilteredPosts.map((post) =>
-          post.id === postId
-            ? {
-              ...post,
-              comments: post.comments.map((comment) =>
-                comment.id === commentId ? { ...comment, content } : comment
-              ),
-            }
-            : post
-        )
-      );
-
-      setEditingComment({});
-    } catch (error) {
-      console.error('Error saving comment:', error);
     }
   };
 
