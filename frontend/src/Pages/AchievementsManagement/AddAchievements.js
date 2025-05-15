@@ -143,3 +143,66 @@ function AddAchievements() {
             marginBottom: '20px',
             textAlign: 'center'
           }}>Add Achievement</h1>
+          
+         <form onSubmit={handleSubmit} className="post-form">
+            <div className="form-group">
+              <label className="form-label" style={{ color: '#333', fontWeight: 'bold' }}>Upload Image</label>
+              <div 
+                className={`file-input ${isDragging ? 'dragging' : ''}`}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+                style={{ 
+                  border: '2px dashed #4285F4',
+                  borderRadius: '8px',
+                  padding: '30px',
+                  textAlign: 'center',
+                  cursor: 'pointer',
+                  backgroundColor: isDragging ? 'rgba(66, 133, 244, 0.1)' : 'transparent',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                <input
+                  id="image-upload"
+                  type="file"
+                  accept="image/jpeg,image/png,image/jpg"
+                  onChange={handleImageChange}
+                  style={{ display: 'none' }}
+                />
+                {!imagePreview ? (
+                  <label htmlFor="image-upload" className="file-upload-label" style={{ cursor: 'pointer', display: 'block' }}>
+                    <div className="upload-icon" style={{ color: '#4285F4', marginBottom: '15px' }}>
+                      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                      </svg>
+                    </div>
+                    <div className="upload-text">
+                      <p style={{ fontSize: '16px', fontWeight: 'bold', color: '#4285F4', margin: '0 0 5px' }}>
+                        Drag & drop image here or click to browse
+                      </p>
+                      <p className="upload-hint" style={{ fontSize: '14px', color: '#555', margin: '0 0 5px' }}>
+                        Supports: JPG, PNG (max 50MB)
+                      </p>
+                    </div>
+                  </label>
+                ) : (
+                  <div className="media-preview-grid" style={{ 
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+                    gap: '10px',
+                    marginTop: '15px'
+                  }}>
+                    <div className="media-preview-item" style={{ 
+                      position: 'relative',
+                      borderRadius: '8px',
+                      overflow: 'hidden',
+                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+                    }}>
+                      <img 
+                        className="media-preview" 
+                        src={imagePreview} 
+                        alt="Achievement preview" 
+                        style={{ width: '100%', height: '150px', objectFit: 'cover' }}
+                      />
