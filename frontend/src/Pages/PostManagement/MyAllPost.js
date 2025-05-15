@@ -584,6 +584,74 @@ const handleAddComment = async (postId) => {
                   borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
                   marginBottom: '15px'
                 }}>
+                  <div className='like_btn_con' style={{ display: 'flex', alignItems: 'center' }}>
+                    <BiSolidLike
+                      className={post.likes?.[localStorage.getItem('userID')] ? 'unlikebtn' : 'likebtn'}
+                      onClick={() => handleLike(post.id)}
+                      style={{
+                        color: post.likes?.[localStorage.getItem('userID')] ? '#FF6F61' : '#4285F4',
+                        fontSize: '22px',
+                        cursor: 'pointer',
+                        marginRight: '5px',
+                        transition: 'transform 0.2s, color 0.2s'
+                      }}
+                      onMouseOver={(e) => {
+                        e.target.style.transform = 'scale(1.2)';
+                      }}
+                      onMouseOut={(e) => {
+                        e.target.style.transform = 'scale(1)';
+                      }}
+                    >
+                      {post.likes?.[localStorage.getItem('userID')] ? 'Unlike' : 'Like'}
+                    </BiSolidLike>
+                    <p className='like_num' style={{ 
+                      color: '#555',
+                      marginLeft: '5px',
+                      fontWeight: 'bold'
+                    }}>
+                      {Object.values(post.likes || {}).filter((liked) => liked).length}
+                    </p>
+                  </div>
+                  <div className='like_btn_con' style={{ display: 'flex', alignItems: 'center' }}>
+                    <FaCommentAlt
+                      className='combtn'
+                      style={{
+                        color: '#4285F4',
+                        fontSize: '20px',
+                        marginRight: '5px'
+                      }}
+                    />
+                    <p className='like_num' style={{ 
+                      color: '#555',
+                      marginLeft: '5px',
+                      fontWeight: 'bold'
+                    }}>
+                      {post.comments?.length || 0}
+                    </p>
+                  </div>
+                </div>
+                <div className='withsett'>
+                  <div className='add_comennt_con' style={{
+                    display: 'flex',
+                    marginBottom: '15px'
+                  }}>
+                    <input
+                      type="text"
+                      className='add_coment_input'
+                      placeholder="Add a comment"
+                      value={newComment[post.id] || ''}
+                      onChange={(e) =>
+                        setNewComment({ ...newComment, [post.id]: e.target.value })
+                      }
+                      style={{
+                        flex: '1',
+                        padding: '10px 15px',
+                        borderRadius: '20px',
+                        border: '1px solid #ccc',
+                        outline: 'none',
+                        boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)'
+                      }}
+                    />                  
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
