@@ -29,4 +29,15 @@ public class AchievementsController {
         return achievementsRepository.save(newAchievementsModel);
     }
 
+    @GetMapping("/achievements")
+    List<AchievementsModel> getAll() {
+        return achievementsRepository.findAll();
+    }
+
+    @GetMapping("/achievements/{id}")
+    AchievementsModel getById(@PathVariable String id) {
+        return achievementsRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(id));
+    }
+
 
