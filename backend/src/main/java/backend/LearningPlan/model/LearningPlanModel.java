@@ -24,13 +24,14 @@ public class LearningPlanModel {
     private String imageUrl;
     private int templateID; // New field for templateID
     private String startDate; // New field
-    private String endDate;   // New field
-    private String category;  // New field
+    private String endDate; // New field
+    private String category; // New field
 
     public LearningPlanModel() {
     }
 
-    public LearningPlanModel(String id, String title, String description, String contentURL, List<String> tags, String postOwnerID, String imageUrl) {
+    public LearningPlanModel(String id, String title, String description, String contentURL, List<String> tags,
+            String postOwnerID, String imageUrl) {
         this.id = id;
         this.title = title;
         this.description = description;

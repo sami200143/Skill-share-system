@@ -36,7 +36,7 @@ public class LearningPlanController {
     @Autowired
     private NotificationRepository notificationRepository;
 
-    //Insert
+    // Insert
     @PostMapping("/learningPlan")
     public LearningPlanModel newLearningSystemModel(@RequestBody LearningPlanModel newLearningPlanModel) {
         System.out.println("Received data: " + newLearningPlanModel); // Debugging line
@@ -46,16 +46,18 @@ public class LearningPlanController {
         // Fetch user's full name from UserRepository
         String postOwnerName = userRepository.findById(newLearningPlanModel.getPostOwnerID())
                 .map(user -> user.getFullname())
-                .orElseThrow(() -> new ResourceNotFoundException("User not found for ID: " + newLearningPlanModel.getPostOwnerID()));
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "User not found for ID: " + newLearningPlanModel.getPostOwnerID()));
         newLearningPlanModel.setPostOwnerName(postOwnerName);
 
         // Set current date and time
         String currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         newLearningPlanModel.setCreatedAt(currentDateTime);
 
-        return learningPlanRepository.save(newLearningPlanModel); 
+        return learningPlanRepository.save(newLearningPlanModel);
     }
 
+    // upload learning plan
     @PostMapping("/learningPlan/planUpload")
     public String uploadImage(@RequestParam("file") MultipartFile file) {
         try {
@@ -106,18 +108,20 @@ public class LearningPlanController {
                     learningPlanModel.setTags(newLearningPlanModel.getTags());
                     learningPlanModel.setImageUrl(newLearningPlanModel.getImageUrl());
                     learningPlanModel.setStartDate(newLearningPlanModel.getStartDate()); // Update startDate
-                    learningPlanModel.setEndDate(newLearningPlanModel.getEndDate());     // Update endDate
-                    learningPlanModel.setCategory(newLearningPlanModel.getCategory());  // Update category
-                    
-                    if (newLearningPlanModel.getPostOwnerID() != null && !newLearningPlanModel.getPostOwnerID().isEmpty()) {
+                    learningPlanModel.setEndDate(newLearningPlanModel.getEndDate()); // Update endDate
+                    learningPlanModel.setCategory(newLearningPlanModel.getCategory()); // Update category
+
+                    if (newLearningPlanModel.getPostOwnerID() != null
+                            && !newLearningPlanModel.getPostOwnerID().isEmpty()) {
                         learningPlanModel.setPostOwnerID(newLearningPlanModel.getPostOwnerID());
                         // Fetch and update the real name of the post owner
                         String postOwnerName = userRepository.findById(newLearningPlanModel.getPostOwnerID())
                                 .map(user -> user.getFullname())
-                                .orElseThrow(() -> new ResourceNotFoundException("User not found for ID: " + newLearningPlanModel.getPostOwnerID()));
+                                .orElseThrow(() -> new ResourceNotFoundException(
+                                        "User not found for ID: " + newLearningPlanModel.getPostOwnerID()));
                         learningPlanModel.setPostOwnerName(postOwnerName);
                     }
-                    
+
                     learningPlanModel.setTemplateID(newLearningPlanModel.getTemplateID()); // Update templateID
                     return learningPlanRepository.save(learningPlanModel);
                 }).orElseThrow(() -> new ResourceNotFoundException(id));
@@ -149,7 +153,8 @@ public class LearningPlanController {
         plans.forEach(plan -> {
             if (plan.getEndDate() != null && plan.getPostOwnerID() != null) {
                 try {
-                    LocalDateTime endDate = LocalDateTime.parse(plan.getEndDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                    LocalDateTime endDate = LocalDateTime.parse(plan.getEndDate(),
+                            DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                     LocalDateTime threeDaysBefore = endDate.minusDays(3);
 
                     if (threeDaysBefore.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).equals(currentDate)) {
