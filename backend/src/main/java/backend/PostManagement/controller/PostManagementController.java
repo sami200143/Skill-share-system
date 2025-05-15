@@ -127,6 +127,10 @@ public class PostManagementController {
                         .body("Failed to delete media file: " + mediaUrl);
             }
         }
+        // Delete the post from the database
+        postRepository.deleteById(postId);
+        return ResponseEntity.ok("Post deleted successfully!");
+    }
 
 
 
