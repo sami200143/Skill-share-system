@@ -131,4 +131,19 @@ function AddNewPost() {
     formData.append('category', categories);
     media.forEach((file) => formData.append('mediaFiles', file));
 
+    ry {
+      // Show loading state
+      document.getElementById('submit-button').disabled = true;
+      document.getElementById('submit-button').innerText = 'Creating Post...';
+      
+      const response = await axios.post('http://localhost:8080/posts', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      
+      alert('Post created successfully!');
+      window.location.href = '/myAllPost';
+    } catch (error) {
+      console.error(error);
+      alert('Failed to create post. Please try again.');
+
 
