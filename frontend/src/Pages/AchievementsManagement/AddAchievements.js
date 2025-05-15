@@ -120,3 +120,26 @@ function AddAchievements() {
       submitButton.innerText = 'Add Achievement';
     }
   };
+
+    return (
+    <Layout>
+      <div className="post-content-wrapper" style={{ 
+        position: 'relative', 
+        maxWidth: '800px', 
+        margin: '20px auto' 
+      }}>
+        <div className="post-form-container" style={{
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          borderRadius: '15px',
+          padding: '30px',
+          boxShadow: '0 8px 16px rgba(0, 0, 0, 0.3)'
+        }}>
+          <h1 className="post-form-title" style={{ 
+            color: '#333', 
+            borderBottom: '2px solid #FF6F61', 
+            paddingBottom: '10px',
+            fontSize: '32px',
+            fontWeight: 'bold',
+            marginBottom: '20px',
+            textAlign: 'center'
+          }}>Add Achievement</h1>
