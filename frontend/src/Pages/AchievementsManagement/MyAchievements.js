@@ -48,3 +48,24 @@ function MyAchievements() {
       alert('Failed to delete Achievement.');
     }
   };
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    const filtered = progressData.filter(
+      (achievement) =>
+        achievement.title.toLowerCase().includes(query) ||
+        achievement.description.toLowerCase().includes(query)
+    );
+    setFilteredData(filtered);
+  };
+
+  const openModal = (imageUrl) => {
+    setSelectedImage(imageUrl);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+    setIsModalOpen(false);
+  };
