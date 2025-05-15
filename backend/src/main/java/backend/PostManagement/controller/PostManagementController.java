@@ -82,3 +82,15 @@ public class PostManagementController {
                     }
                 })
                 .collect(Collectors.toList());
+
+                 PostManagementModel post = new PostManagementModel();
+        post.setUserID(userID);
+        post.setTitle(title);
+        post.setDescription(description);
+        post.setCategory(category); // Set category
+        post.setMedia(mediaUrls);
+
+        PostManagementModel savedPost = postRepository.save(post);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedPost);
+    }
+
