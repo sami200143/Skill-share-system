@@ -17,4 +17,8 @@ function AddNewPost() {
     const files = Array.from(e.target.files);
     processMediaFiles(files);
   };
+  const handleMediaChange = (e) => {
+    const files = Array.from(e.target.files);
+    processMediaFiles(files);
+  };
 }
