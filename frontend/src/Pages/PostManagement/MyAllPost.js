@@ -140,6 +140,7 @@ function MyAllPost() {
     }
   };
 
+
   const handleFollowToggle = async (postOwnerID) => {
     const userID = localStorage.getItem('userID');
     if (!userID) {
@@ -159,7 +160,7 @@ function MyAllPost() {
     }
   };
 
-  const handleAddComment = async (postId) => {
+const handleAddComment = async (postId) => {
     const userID = localStorage.getItem('userID');
     if (!userID) {
       alert('Please log in to comment.');
@@ -193,7 +194,6 @@ function MyAllPost() {
       console.error('Error adding comment:', error);
     }
   };
-
   const handleDeleteComment = async (postId, commentId) => {
     const userID = localStorage.getItem('userID');
     try {
@@ -220,7 +220,6 @@ function MyAllPost() {
       console.error('Error deleting comment:', error);
     }
   };
-
   const handleSaveComment = async (postId, commentId, content) => {
     try {
       const userID = localStorage.getItem('userID');
@@ -652,7 +651,7 @@ function MyAllPost() {
                         outline: 'none',
                         boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.1)'
                       }}
-                    />
+                    />   
                     <IoSend
                       onClick={() => handleAddComment(post.id)}
                       className='add_coment_btn'

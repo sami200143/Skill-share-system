@@ -198,7 +198,7 @@ function AllPost() {
     }
   };
 
-  const handleAddComment = async (postId) => {
+ const handleAddComment = async (postId) => {
     const userID = localStorage.getItem('userID');
     if (!userID) {
       alert('Please log in to comment.');
@@ -214,7 +214,6 @@ function AllPost() {
         userID,
         content,
       });
-
       // Update the specific post's comments in the state
       setPosts((prevPosts) =>
         prevPosts.map((post) =>
@@ -233,7 +232,6 @@ function AllPost() {
       console.error('Error adding comment:', error);
     }
   };
-
   const handleDeleteComment = async (postId, commentId) => {
     const userID = localStorage.getItem('userID');
     try {
@@ -896,7 +894,7 @@ function AllPost() {
                                     e.target.style.transform = 'scale(1)';
                                   }}
                                 />
-                              </>
+                              </>                          
                             ) : (
                               <>
                                 <GrUpdate className='coment_btn' 
@@ -995,7 +993,6 @@ function AllPost() {
           )}
         </div>
       </div>
-
       {/* Modal for displaying full media */}
       <Modal
         isOpen={isModalOpen}
