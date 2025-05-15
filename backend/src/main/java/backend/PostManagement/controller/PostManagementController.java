@@ -83,7 +83,7 @@ public class PostManagementController {
                 })
                 .collect(Collectors.toList());
 
-        PostManagementModel post = new PostManagementModel();
+                 PostManagementModel post = new PostManagementModel();
         post.setUserID(userID);
         post.setTitle(title);
         post.setDescription(description);
@@ -93,8 +93,7 @@ public class PostManagementController {
         PostManagementModel savedPost = postRepository.save(post);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedPost);
     }
-
-    @GetMapping
+     @GetMapping
     public List<PostManagementModel> getAllPosts() {
         return postRepository.findAll();
     }
@@ -112,13 +111,12 @@ public class PostManagementController {
                 .orElseThrow(() -> new ResourceNotFoundException("Post not found: " + postId));
         return ResponseEntity.ok(post);
     }
-
     @DeleteMapping("/{postId}")
     public ResponseEntity<?> deletePost(@PathVariable String postId) {
         PostManagementModel post = postRepository.findById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("Post not found: " + postId));
 
-        // Delete associated media files
+     // Delete associated media files
         for (String mediaUrl : post.getMedia()) {
             try {
                 // Resolve the full file path
@@ -129,13 +127,11 @@ public class PostManagementController {
                         .body("Failed to delete media file: " + mediaUrl);
             }
         }
-
         // Delete the post from the database
         postRepository.deleteById(postId);
         return ResponseEntity.ok("Post deleted successfully!");
     }
-
-    @PutMapping("/{postId}")
+     @PutMapping("/{postId}")
     public ResponseEntity<?> updatePost(
             @PathVariable String postId,
             @RequestParam String title,
@@ -150,7 +146,7 @@ public class PostManagementController {
         post.setDescription(description);
         post.setCategory(category); // Update category
 
-        if (newMediaFiles != null && !newMediaFiles.isEmpty()) {
+         if (newMediaFiles != null && !newMediaFiles.isEmpty()) {
             // Ensure the upload directory exists
             final File uploadDirectory = new File(uploadDir.isBlank() ? uploadDir : System.getProperty("user.dir"), uploadDir);
             if (!uploadDirectory.exists()) {
@@ -224,79 +220,10 @@ public class PostManagementController {
                 })
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
-
-    @PostMapping("/{postId}/comment")
-    public ResponseEntity<PostManagementModel> addComment(@PathVariable String postId, @RequestBody Map<String, String> request) {
-        String userID = request.get("userID");
-        String content = request.get("content");
-
-        return postRepository.findById(postId)
-                .map(post -> {
-                    Comment comment = new Comment();
-                    comment.setId(UUID.randomUUID().toString());
-                    comment.setUserID(userID);
-                    comment.setContent(content);
-
-                    // Fetch user's full name
-                    String userFullName = userRepository.findById(userID)
-                            .map(user -> user.getFullname())
-                            .orElse("Anonymous");
-                    comment.setUserFullName(userFullName);
-
-                    post.getComments().add(comment);
-                    postRepository.save(post);
-
-                    // Create a notification for the post owner
-                    if (!userID.equals(post.getUserID())) {
-                        String message = String.format("%s commented on your post: %s", userFullName, post.getTitle());
-                        String currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-                        NotificationModel notification = new NotificationModel(post.getUserID(), message, false, currentDateTime);
-                        notificationRepository.save(notification);
-                    }
-
-                    return ResponseEntity.ok(post);
-                })
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-    }
-
-    @PutMapping("/{postId}/comment/{commentId}")
-    public ResponseEntity<PostManagementModel> updateComment(
-            @PathVariable String postId,
-            @PathVariable String commentId,
-            @RequestBody Map<String, String> request) {
-        String userID = request.get("userID");
-        String content = request.get("content");
-
-        return postRepository.findById(postId)
-                .map(post -> {
-                    post.getComments().stream()
-                            .filter(comment -> comment.getId().equals(commentId) && comment.getUserID().equals(userID))
-                            .findFirst()
-                            .ifPresent(comment -> comment.setContent(content));
-                    postRepository.save(post);
-                    return ResponseEntity.ok(post);
-                })
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-    }
-
-    @DeleteMapping("/{postId}/comment/{commentId}")
-    public ResponseEntity<PostManagementModel> deleteComment(
-            @PathVariable String postId,
-            @PathVariable String commentId,
-            @RequestParam String userID) {
-        return postRepository.findById(postId)
-                .map(post -> {
-                    post.getComments().removeIf(comment ->
-                            comment.getId().equals(commentId) &&
-                                    (comment.getUserID().equals(userID) || post.getUserID().equals(userID)));
-                    postRepository.save(post);
-                    return ResponseEntity.ok(post);
-                })
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-    }
-
-    @ExceptionHandler(MaxUploadSizeExceededException.class)
-    public ResponseEntity<?> handleMaxSizeException(MaxUploadSizeExceededException exc) {
-        return ResponseEntity.status(HttpStatus.PAYLOAD_TOO_LARGE).body("File size exceeds the maximum limit!");
-    }
 }
+
+
+
+
+
+
