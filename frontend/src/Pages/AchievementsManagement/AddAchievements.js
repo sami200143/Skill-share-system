@@ -15,3 +15,19 @@ function AddAchievements() {
   const [image, setImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
+
+  seEffect(() => {
+    const userId = localStorage.getItem('userID');
+    if (userId) {
+      setFormData((prevData) => ({ ...prevData, postOwnerID: userId }));
+      fetch(`http://localhost:8080/user/${userId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data && data.fullname) {
+            setFormData((prevData) => ({ ...prevData, postOwnerName: data.fullname }));
+          }
+        })
+        .catch((error) => console.error('Error fetching user data:', error));
+    }
+  }, []);
+
