@@ -30,7 +30,8 @@ function MyLearningPlan() {
 
     fetchPosts();
   }, []);
-  
+
+
  const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
@@ -60,3 +61,29 @@ function MyLearningPlan() {
       return '';
     }
   };
+  //Handle delete
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this post?');
+    if (confirmDelete) {
+      try {
+        await axios.delete(`http://localhost:8080/learningPlan/${id}`);
+        alert('Post deleted successfully!');
+        setFilteredPosts(filteredPosts.filter((post) => post.id !== id));
+        setPosts(posts.filter((post) => post.id !== id));
+      } catch (error) {
+        console.error('Error deleting post:', error);
+        alert('Failed to delete post.');
+      }
+    }
+  };
+
+  const handleUpdate = (id) => {
+    window.location.href = `/updateLearningPlan/${id}`;
+  };
+
+  const renderPostByTemplate = (post) => {
+    console.log('Rendering post:', post);
+    if (!post.templateID) {
+      console.warn('Missing templateID for post:', post);
+      return <div className="template template-default">Invalid template ID</div>;
+    }
