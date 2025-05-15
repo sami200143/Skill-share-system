@@ -193,6 +193,32 @@ const handleAddComment = async (postId) => {
       console.error('Error adding comment:', error);
     }
   };
+  const handleDeleteComment = async (postId, commentId) => {
+    const userID = localStorage.getItem('userID');
+    try {
+      await axios.delete(`http://localhost:8080/posts/${postId}/comment/${commentId}`, {
+        params: { userID },
+      });
+
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.id === postId
+            ? { ...post, comments: post.comments.filter((comment) => comment.id !== commentId) }
+            : post
+        )
+      );
+
+      setFilteredPosts((prevFilteredPosts) =>
+        prevFilteredPosts.map((post) =>
+          post.id === postId
+            ? { ...post, comments: post.comments.filter((comment) => comment.id !== commentId) }
+            : post
+        )
+      );
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+    }
+  };
 
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
