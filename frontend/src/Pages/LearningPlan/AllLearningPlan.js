@@ -37,3 +37,20 @@ function AllLearningPlan() {
 
     fetchPosts();
   }, []);
+
+  const getEmbedURL = (url) => {
+    try {
+      if (url.includes('youtube.com/watch')) {
+        const videoId = new URL(url).searchParams.get('v');
+        return `https://www.youtube.com/embed/${videoId}`;
+      }
+      if (url.includes('youtu.be/')) {
+        const videoId = url.split('youtu.be/')[1];
+        return `https://www.youtube.com/embed/${videoId}`;
+      }
+      return url; // Return the original URL if it's not a YouTube link
+    } catch (error) {
+      console.error('Invalid URL:', url);
+      return ''; // Return an empty string for invalid URLs
+    }
+  };
