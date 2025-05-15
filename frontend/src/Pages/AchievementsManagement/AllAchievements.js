@@ -29,3 +29,40 @@ function AllAchievements() {
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
+
+     // Filter achievements based on title or description
+    const filtered = progressData.filter(
+      (achievement) =>
+        achievement.title.toLowerCase().includes(query) ||
+        achievement.description.toLowerCase().includes(query)
+    );
+    setFilteredData(filtered);
+  };
+
+  const handleDelete = async (id) => {
+    if (window.confirm('Are you sure you want to delete this Achievement?')) {
+      try {
+        const response = await fetch(`http://localhost:8080/achievements/${id}`, {
+          method: 'DELETE',
+        });
+        if (response.ok) {
+          alert('Achievement deleted successfully!');
+          setFilteredData(filteredData.filter((progress) => progress.id !== id));
+        } else {
+          alert('Failed to delete Achievement.');
+        }
+      } catch (error) {
+        console.error('Error deleting Achievement:', error);
+      }
+    }
+  };
+
+  const openModal = (imageUrl) => {
+    setSelectedImage(imageUrl);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+    setIsModalOpen(false);
+  };
