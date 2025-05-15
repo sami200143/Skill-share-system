@@ -48,6 +48,10 @@ function AddNewPost() {
             window.location.reload();
           }
         };
+         } else {
+        alert(`Unsupported file type: ${file.type}`);
+        return;
+      }
 
 
 }
